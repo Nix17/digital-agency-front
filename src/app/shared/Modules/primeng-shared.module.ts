@@ -41,7 +41,6 @@ import { ChipModule } from 'primeng/chip';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
-  declarations: [],
   exports: [
     AutoCompleteModule,
     CalendarModule,
