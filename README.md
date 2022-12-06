@@ -2,28 +2,39 @@
 
 https://pedanto.com/website-calculator.html#options-c_type_1-c_pages-c_manager-c_shablon_1-c_logo-c_banner-landing-c_pagesimple_x1-c_pagehard_x1-c_pageedit_x1-c_posadd_x1-c_transfer-c_phonechange-c_hosting-c_backups-c_mailserver
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
+---
 
-## Development server
+«Информационная система для формирования коммерческого предложения в digital-агентстве»
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+ИС должна содержать следующую информацию:
 
-## Code scaffolding
+•	 Сведения о зарегистрированных пользователях (ФИО, эл. адрес, номер телефона)
+*	Сведения о типах сайтов (название, цена, описание)
+*	Сведения о дополнительных подключаемых модулях (название, цена, тип сайта, описание) 
+*	Сведения о дополнительных услугах по продвижению сайта (название, цена, описание)
+*	Сведения о сформированных предложениях (заказах) (номер предложения, клиент,
+ дата, стоимость, заказываемые продукты, услуги, индивидуальные пожелания)
+*	Сведения о клиентах, совершивших заказ (номер предложения, факт согласия/отказа)
+*	Сведения о клиентах, отказавшихся от заказа (номер предложения, факт согласия/отказа)
+*	Сведения о предпочтительном способе связи с клиентом
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+статус (лояльность) клиента – периодичность заказа – не важно пока что
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+ИС должна обеспечивать выполнение следующих функций: 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+*	Многопользовательский режим работы (администратор, пользователь).
+*	Разграничение прав доступа к ИС с помощью идентификации и аутентификации пользователей (пользователь и администратор – соответствующие пароли).
+*	Ввод, удаление и редактирование той или иной информации, с возможностью автоматизации (подстановок из других таблиц, фиксированных наборов данных и т.д.) и входного контроля от некорректных действий (только для администратора).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+*	Автоматически производить расчет стоимости заказа при различных комбинациях продуктов и услуг при выборе срока (стандартный и ускоренный варианты)
+*	Формировать постатейную калькуляцию стоимости того или иного заказа (с возможностью вывода на принтер)
+*	Формирование коммерческого предложения для клиента в виде документа MSWord;
+*	Осуществлять поиск по разнообразным признакам (номеру заказа и т.д.).
+*	Вывод списка заказов за заданный пользователем период времени/ с сортировкой (фильтром) по цене. Организовать возможность вывода списка сведений в MSWord (или MSExcel).
+*	Вывод списка несовершённых заказов (отказов) за заданный пользователем период времени/ с сортировкой (фильтром) по цене. Организовать возможность вывода списка сведений в MSWord (или MSExcel).
+*	Выводить сведения о тех комбинациях элементов заказа, которые были наиболее популярны за заданный промежуток времени. Организовать возможность вывода списка сведений в MSWord (или MSExcel).
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
