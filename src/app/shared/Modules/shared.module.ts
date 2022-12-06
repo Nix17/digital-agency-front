@@ -5,12 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PrimengSharedModule } from './primeng-shared.module';
 import { MyProgressSpinnerComponent } from '../Components/my-progress-spinner/my-progress-spinner.component';
+import { LayoutComponent } from '../Components/layout/layout.component';
 
 
 
 @NgModule({
   declarations: [
-    MyProgressSpinnerComponent
+    MyProgressSpinnerComponent,
+    LayoutComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { MyProgressSpinnerComponent } from '../Components/my-progress-spinner/my
   ],
   exports: [
     PrimengSharedModule,
-    MyProgressSpinnerComponent
+    LayoutComponent,
+    MyProgressSpinnerComponent,
   ],
   providers: []
 })

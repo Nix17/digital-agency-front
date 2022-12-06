@@ -1,0 +1,83 @@
+<div class="wrapper">
+  <div class="top">
+    <header class="header">
+      <p-toolbar>
+        <div class="p-toolbar-group-left">
+          <div class="flex flex-wrap justify-content-center align-items-stretch gap-2">
+
+            <div class="flex align-items-center justify-content-center text-center logo">Digit<br>SBMPEI</div>
+
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-home"
+              class="p-button-text"
+              [style]="{ color: 'white' }"
+              label="Главная"
+            ></button>
+
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-user"
+              class="p-button-text"
+              [style]="{ color: 'white' }"
+              label="Профиль"
+            ></button>
+          </div>
+        </div>
+
+        <div class="p-toolbar-group-right">
+          <div class="flex flex-wrap justify-content-center gap-2">
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-angle-double-left"
+              label="Меню"
+              class="p-button-text"
+              [style]="{ color: 'white' }"
+              (click)="visibleSidebar = true"
+            ></button>
+
+            <button
+              pButton
+              pRipple
+              icon="pi pi-power-off"
+              type="button"
+              label="Выход"
+              class="p-button-danger p-button-text"
+            ></button>
+          </div>
+        </div>
+      </p-toolbar>
+    </header>
+  </div>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer>
+    <div>
+      <div class="flex justify-content-center flex-wrap h-3rem">
+        <a href="http://telegram.org" target="_blank" rel="">
+          <i style="color: white; font-size: 2rem" class="pi pi-telegram"></i>
+        </a>
+      </div>
+      <div class="flex justify-content-center flex-wrap text-center">
+        Digital Agency SBMPEI<br />Copyright (c) 2022
+      </div>
+    </div>
+  </footer>
+</div>
+
+<p-sidebar
+  [(visible)]="visibleSidebar"
+  position="right"
+  [baseZIndex]="10000"
+>
+  <h3><i class="pi pi-cog"></i> Управление</h3>
+</p-sidebar>

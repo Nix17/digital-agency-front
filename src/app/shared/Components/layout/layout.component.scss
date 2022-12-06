@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.top {
+  flex-grow: 1;
+}
+
+footer {
+  margin: 0.1em 0.1em 0em 0.1em;
+  background-color: var(--color-rhino);
+  color: var(--color-white);
+  padding: 1em;
+
+  a {
+    text-decoration: none;
+
+    i:hover {
+      transition: 1s;
+      transform: scale(0.80);
+    }
+  }
+}
+
+:host ::ng-deep .p-toolbar {
+  background-color: var(--color-rhino);
+}
+
+.logo {
+  color: var(--color-amber);
+  font-family: 'MultiroundPro', sans-serif;
+}
