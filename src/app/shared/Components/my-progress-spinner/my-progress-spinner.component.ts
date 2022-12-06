@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'my-progress-spinner',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-progress-spinner.component.scss']
 })
 export class MyProgressSpinnerComponent implements OnInit {
+
+  @Input() sizePx: number = 50;
 
   constructor() { }
 
