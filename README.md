@@ -1,5 +1,7 @@
 # DigitalAgencyFront
 
+https://pedanto.com/website-calculator.html#options-c_type_1-c_pages-c_manager-c_shablon_1-c_logo-c_banner-landing-c_pagesimple_x1-c_pagehard_x1-c_pageedit_x1-c_posadd_x1-c_transfer-c_phonechange-c_hosting-c_backups-c_mailserver
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
 ## Development server
