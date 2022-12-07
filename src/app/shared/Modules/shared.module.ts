@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PrimengSharedModule } from './primeng-shared.module';
 import { MyProgressSpinnerComponent } from '../Components/my-progress-spinner/my-progress-spinner.component';
 import { LayoutComponent } from '../Components/layout/layout.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,7 +21,7 @@ import { LayoutComponent } from '../Components/layout/layout.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    PrimengSharedModule
+    PrimengSharedModule,
   ],
   exports: [
     PrimengSharedModule,

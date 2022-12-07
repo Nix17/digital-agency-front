@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -6,5 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
-  visibleSidebar: boolean = false;
+
+  constructor(
+    private router: Router
+  ) {}
+
+  onNav(url: string) {
+    let path: string[] = (url !== '' ? ['/', url] : [url]);
+    // console.log(path);
+    this.router.navigate(path);
+  }
 }
