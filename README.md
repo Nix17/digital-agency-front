@@ -38,3 +38,67 @@ https://pedanto.com/website-calculator.html#options-c_type_1-c_pages-c_manager-c
 *	Выводить сведения о тех комбинациях элементов заказа, которые были наиболее популярны за заданный промежуток времени. Организовать возможность вывода списка сведений в MSWord (или MSExcel).
 
 
+userEntity {
+  FIO,
+  email,
+  phone,
+  role,
+  gender
+}
+
+typeSiteRefBook {
+  name,
+  price,
+  description
+}
+
+siteModulesRef {
+  name,
+  price,
+  typeSite,
+  description
+}
+
+designSiteRef {
+  name,
+  price,
+  description
+}
+
+supportSiteRef {
+  name,
+  price,
+  descrition
+}
+
+comMethodRef {
+  name
+}
+
+reasonRefuseRef {
+  name
+}
+
+urgencyRef {
+  name
+}
+
+offerSrvTavle {
+  num,
+  siteTypeId,
+  moduleId,
+  designId,
+  support,
+  client,
+  comMethod,
+  commonPrice,
+  urgencyId
+}
+
+orderSrvTable {
+  num,
+  numOffer,
+  agreement
+}
+
+???popular every settings of site {....}

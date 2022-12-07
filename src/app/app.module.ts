@@ -25,7 +25,7 @@ import { NotFoundPage } from './pages/not-found/not-found.page';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import { PrimengSharedModule } from './primeng-shared.module';
 import { MyProgressSpinnerComponent } from '../Components/my-progress-spinner/my-progress-spinner.component';
 import { LayoutComponent } from '../Components/layout/layout.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     PrimengSharedModule,
+    HttpClientModule,
   ],
   exports: [
     PrimengSharedModule,

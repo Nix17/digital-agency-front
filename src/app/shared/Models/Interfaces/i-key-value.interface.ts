@@ -7,6 +7,15 @@ export interface IKeyNameDescription extends IKeyName {
   description: string;
 }
 
+export interface IKeyNameDescPrice extends IKeyNameDescription {
+  price: number;
+  // imgSrc: string;
+}
+
+export interface IKeyNameDescPriceType {
+  siteType: string;
+}
+
 export interface IKeyValue {
   id: string;
   value: string;

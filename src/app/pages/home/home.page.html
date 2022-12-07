@@ -1,1 +1,4 @@
-<p>home works!</p>
+<div *ngIf="(refBook$ | async) as refBook">
+  <p>home works!</p>
+  <button (click)="onClick(refBook)">Click</button>
+</div>
