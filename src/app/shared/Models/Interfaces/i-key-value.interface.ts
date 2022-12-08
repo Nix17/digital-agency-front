@@ -12,7 +12,7 @@ export interface IKeyNameDescPrice extends IKeyNameDescription {
   // imgSrc: string;
 }
 
-export interface IKeyNameDescPriceType {
+export interface IKeyNameDescPriceType extends IKeyNameDescPrice {
   siteType: string;
 }
 
