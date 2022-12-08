@@ -287,7 +287,37 @@
       "price": 0
     }
   ],
-  "communicationMethod": [],
+  "communicationMethod": [
+    {
+      "id": 1,
+      "name": "Телефон"
+    },
+    {
+      "id": 1,
+      "name": "E-mail"
+    },
+    {
+      "id": 1,
+      "name": "Telegram"
+    },
+    {
+      "id": 1,
+      "name": "Whats App"
+    },
+    {
+      "id": 1,
+      "name": "Другое"
+    }
+  ],
   "rejectionReason": [],
-  "urgency": []
+  "urgency": [
+    {
+      "id": 1,
+      "name": "Да"
+    },
+    {
+      "id": 1,
+      "name": "Нет"
+    }
+  ]
 }
