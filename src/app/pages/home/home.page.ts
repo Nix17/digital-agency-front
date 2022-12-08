@@ -23,8 +23,10 @@ export class HomePage {
     private srv: RefBookService
   ) {}
 
-  onClick(obj: any) {
+  show: boolean = false;
+  onLog(obj: any) {
     console.log(obj);
+    this.show = !this.show;
   }
 
 }

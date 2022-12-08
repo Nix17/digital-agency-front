@@ -4,6 +4,7 @@ export class RefBookDto {
   siteType: IKeyNameDescPrice[] = [];
   siteModules: IKeyNameDescPriceType[] = [];
   siteDesign: IKeyNameDescPrice[] = [];
+  optionalDesign: IKeyNameDescPrice[] = [];
   siteSupport: IKeyNameDescPrice[] = [];
   communicationMethod: IKeyName[] = [];
   rejectionReason: IKeyName[] = [];

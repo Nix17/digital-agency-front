@@ -1,4 +1,27 @@
+<div class="grid">
+  <div class="col">Home component</div>
+</div>
+
+
 <div *ngIf="(refBook$ | async) as refBook">
-  <p>home works!</p>
-  <button (click)="onClick(refBook)">Click</button>
+  <div class="field grid">
+    <div class="col">
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Primary"
+        (click)="onLog(refBook)"
+      ></button>
+    </div>
+  </div>
+
+  <div *ngIf="show; else loading" class="field grid">
+    <div class="col">
+      <pre>{{ refBook | json }}</pre>
+    </div>
+  </div>
+  <ng-template #loading>
+    <my-progress-spinner></my-progress-spinner>
+  </ng-template>
 </div>
