@@ -8,13 +8,15 @@ import { MyProgressSpinnerComponent } from '../Components/my-progress-spinner/my
 import { LayoutComponent } from '../Components/layout/layout.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { CheckBoxCardComponent } from '../Components/check-box-card/check-box-card.component';
 
 
 
 @NgModule({
   declarations: [
     MyProgressSpinnerComponent,
-    LayoutComponent
+    LayoutComponent,
+    CheckBoxCardComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     PrimengSharedModule,
     LayoutComponent,
     MyProgressSpinnerComponent,
+    CheckBoxCardComponent
   ],
   providers: []
 })
