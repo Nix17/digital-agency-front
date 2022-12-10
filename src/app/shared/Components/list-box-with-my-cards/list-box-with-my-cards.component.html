@@ -1,0 +1,61 @@
+<div class="my-list" [style]="{'width': widthPercent + '%'}">
+    <div class="mb-3" *ngIf="title !== ''">
+        <div class="grid mb-3">
+            <div class="col text-center">
+                <div class="text-4xl text-blue-400 font-bold underline">{{ title }}</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="col">
+                <div class="bg-blue-300 text-white m-2 px-5 py-3 border-round">{{ subTitle }}</div>
+            </div>
+        </div>
+    </div>
+    <p-listbox
+        *ngIf="multipleSelect === false"
+        [options]="options"
+        [(ngModel)]="selectedItem"
+        [metaKeySelection]="false"
+        [checkbox]="true"
+        [filter]="multipleSelect"
+        [multiple]="multipleSelect"
+        [listStyle]="{'max-height':'60%'}"
+        optionLabel="name"
+        [style]="{'width':'100%', 'background': 'var(--color-grey-light)'}"
+        [emptyMessage]="'No items to select...'"
+        (onChange)="onChangeSingle($event)"
+    >
+        <ng-template let-item pTemplate="item">
+            <my-check-box-card
+                [name]="item.name"
+                [price]="item.price"
+                [description]="item.description"
+            ></my-check-box-card>
+        </ng-template>
+    </p-listbox>
+
+    <!-- multipleSelect TRUE -->
+    <p-listbox
+        *ngIf="multipleSelect === true"
+        [options]="options"
+        [(ngModel)]="selectedItems"
+        [metaKeySelection]="false"
+        [checkbox]="true"
+        [filter]="multipleSelect"
+        [multiple]="multipleSelect"
+        [listStyle]="{'max-height':'60%'}"
+        optionLabel="name"
+        [style]="{'width':'100%', 'background': 'var(--color-grey-light)'}"
+        [emptyMessage]="'No items to select...'"
+        (onChange)="onChangeMuili($event)"
+    >
+        <ng-template let-item pTemplate="item">
+            <my-check-box-card
+                [name]="item.name"
+                [price]="item.price"
+                [description]="item.description"
+            ></my-check-box-card>
+        </ng-template>
+    </p-listbox>
+</div>

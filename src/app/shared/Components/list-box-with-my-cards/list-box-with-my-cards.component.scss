@@ -1,0 +1,12 @@
+$bgColor: #84bbffc0;
+
+:host ::ng-deep .p-highlight {
+    background: #abdcffd1 !important;
+    .p-card {
+        background: $bgColor !important;
+        .p-divider-content {
+            background: #84bbff32 !important;
+            // color: $bgColor !important;
+        }
+    }
+}

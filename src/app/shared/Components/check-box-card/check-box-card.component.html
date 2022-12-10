@@ -1,1 +1,38 @@
-<p>check-box-card works!</p>
+<p-card>
+    <ng-template pTemplate="content">
+
+        <div class="field grid">
+            <div class="col">
+                <div class="grid">
+                    <div class="col">
+                        <h3>{{ name }}</h3>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="col">
+                        <p-divider align="left">
+                            <div
+                                class="inline-flex align-items-center gap-2 my-color"
+                            >
+                              <h3>{{ price | nullMoney }} </h3>
+                              <fa-icon
+                                *ngIf="price !== 0"
+                                [size]="sProp"
+                                [icon]="rubleIcon"
+                            ></fa-icon>
+                            </div>
+                        </p-divider>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="col" style="font-size: 0.9rem;">
+                        {{ description }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+</p-card>

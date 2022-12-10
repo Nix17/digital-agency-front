@@ -1,33 +1,19 @@
-<div class="grid">
-  <div class="col">Home component</div>
-</div>
-
+<ng-template #loading>
+  <my-progress-spinner></my-progress-spinner>
+</ng-template>
 
 <div *ngIf="(refBook$ | async) as refBook">
   <div class="field grid">
     <div class="col">
-      <button
-        pButton
-        pRipple
-        type="button"
-        label="Primary"
-        (click)="onLog(refBook)"
-      ></button>
+      <my-list-box-with-my-cards
+        [title]="textInfo[0].title"
+        [subTitle]="textInfo[0].subTitle"
+        [options]="refBook.siteType"
+        [widthPercent]="40"
+        [multipleSelect]="true"
+        (changeSingleSelectedItem)="onLog($event)"
+        (changeMuiltiSelectedItems)="onLog($event)"
+      ></my-list-box-with-my-cards>
     </div>
   </div>
-
-  <div class="field grid">
-    <div class="col">
-      <my-check-box-card></my-check-box-card>
-    </div>
-  </div>
-
-  <div *ngIf="show; else loading" class="field grid">
-    <div class="col">
-      <pre>{{ refBook | json }}</pre>
-    </div>
-  </div>
-  <ng-template #loading>
-    <my-progress-spinner></my-progress-spinner>
-  </ng-template>
 </div>
