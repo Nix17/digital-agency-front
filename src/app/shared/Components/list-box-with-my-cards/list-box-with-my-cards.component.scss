@@ -10,3 +10,7 @@ $bgColor: #84bbffc0;
         }
     }
 }
+
+:host ::ng-deep my-check-box-card {
+    width: 100% !important;
+}

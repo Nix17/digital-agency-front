@@ -2,18 +2,101 @@
   <my-progress-spinner></my-progress-spinner>
 </ng-template>
 
+<div class="flex justify-content-center flex-wrap card-container">
+  <div class="flex align-items-center justify-content-center w-2">
+    <img src="../../../assets/imgs/pedanto_calc.png.svg" class="border-circle">
+  </div>
+
+  <div class="flex align-items-center justify-content-center w-auto font-bold w-4 text-lg">
+    Добро пожаловать на страницу калькулятора стоимости сайта. Здесь Вы можете рассчитать стоимость создания сайта онлайн. Наш калькулятор полностью интерактивен и Вы можете добавлять и исключать нужные компоненты формируя тем самым свой уникальный сайт. Смотрите видео как пользоваться калькулятором, чтобы узнать все особенности расчета стоимости сайта.
+  </div>
+</div>
+
 <div *ngIf="(refBook$ | async) as refBook">
-  <div class="field grid">
+
+  <div class="grid">
     <div class="col">
-      <my-list-box-with-my-cards
-        [title]="textInfo[0].title"
-        [subTitle]="textInfo[0].subTitle"
-        [options]="refBook.siteType"
-        [widthPercent]="40"
-        [multipleSelect]="true"
-        (changeSingleSelectedItem)="onLog($event)"
-        (changeMuiltiSelectedItems)="onLog($event)"
-      ></my-list-box-with-my-cards>
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+          <my-list-box-with-my-cards
+              [title]="textInfo[0].title"
+              [subTitle]="textInfo[0].subTitle"
+              [options]="refBook.siteType"
+              [widthPercent]="100"
+              [multipleSelect]="false"
+              (changeSingleSelectedItem)="onLog($event)"
+            ></my-list-box-with-my-cards>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="grid">
+    <div class="col">
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+          <my-list-box-with-my-cards
+              [title]="textInfo[1].title"
+              [subTitle]="textInfo[1].subTitle"
+              [options]="refBook.siteModules"
+              [widthPercent]="100"
+              [multipleSelect]="true"
+              (changeMuiltiSelectedItems)="onLog($event)"
+            ></my-list-box-with-my-cards>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+          <my-list-box-with-my-cards
+              [title]="textInfo[2].title"
+              [subTitle]="textInfo[2].subTitle"
+              [options]="refBook.siteDesign"
+              [widthPercent]="100"
+              [multipleSelect]="false"
+              (changeSingleSelectedItem)="onLog($event)"
+            ></my-list-box-with-my-cards>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+          <my-list-box-with-my-cards
+              [title]="textInfo[3].title"
+              [subTitle]="textInfo[3].subTitle"
+              [options]="refBook.optionalDesign"
+              [widthPercent]="100"
+              [multipleSelect]="true"
+              (changeMuiltiSelectedItems)="onLog($event)"
+            ></my-list-box-with-my-cards>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+          <my-list-box-with-my-cards
+              [title]="textInfo[3].title"
+              [subTitle]="textInfo[3].subTitle"
+              [options]="refBook.siteSupport"
+              [widthPercent]="100"
+              [multipleSelect]="true"
+              (changeMuiltiSelectedItems)="onLog($event)"
+            ></my-list-box-with-my-cards>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
