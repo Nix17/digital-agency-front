@@ -2,6 +2,11 @@
   <my-progress-spinner></my-progress-spinner>
 </ng-template>
 
+<div class="float-cost">
+  <app-total-site-host [totalCost]="0">
+  </app-total-site-host>
+</div>
+
 <div class="flex justify-content-center flex-wrap card-container">
   <div class="flex align-items-center justify-content-center w-2">
     <img src="../../../assets/imgs/pedanto_calc.png.svg" class="border-circle">
@@ -24,7 +29,7 @@
               [options]="refBook.siteType"
               [widthPercent]="100"
               [multipleSelect]="false"
-              (changeSingleSelectedItem)="onLog($event)"
+              (changeSingleSelectedItem)="changeSiteType($event)"
             ></my-list-box-with-my-cards>
         </div>
       </div>
@@ -87,8 +92,8 @@
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
           <my-list-box-with-my-cards
-              [title]="textInfo[3].title"
-              [subTitle]="textInfo[3].subTitle"
+              [title]="textInfo[4].title"
+              [subTitle]="textInfo[4].subTitle"
               [options]="refBook.siteSupport"
               [widthPercent]="100"
               [multipleSelect]="true"

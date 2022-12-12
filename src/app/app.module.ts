@@ -10,6 +10,7 @@ import { HomePage } from './pages/home/home.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { AdminMenuPage } from './pages/admin-menu/admin-menu.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
+import { TotalSiteHostComponent } from './pages/home/total-site-host/total-site-host.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NotFoundPage } from './pages/not-found/not-found.page';
     HomePage,
     ProfilePage,
     AdminMenuPage,
-    NotFoundPage
+    NotFoundPage,
+    TotalSiteHostComponent
   ],
   imports: [
     BrowserModule,

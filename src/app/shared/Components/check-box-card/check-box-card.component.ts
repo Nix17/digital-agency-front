@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  faRubleSign
-} from '@fortawesome/free-solid-svg-icons';
+import { faRubleSign } from '@fortawesome/free-solid-svg-icons';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({

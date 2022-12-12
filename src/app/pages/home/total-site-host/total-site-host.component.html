@@ -1,0 +1,14 @@
+<p-card styleClass="bg-bluegray-500">
+    <ng-template pTemplate="content">
+        <div class="grid" style="color: white !important;">
+            <div class="col">Общая стоимость сайта:</div>
+        </div>
+
+        <div class="grid" style="color: white !important; border-top: 1px solid white;">
+            <div class="col">
+                <span class="font-bold text-xl">{{ totalCost }} </span>
+                <fa-icon [icon]="rubleIcon" [size]="sProp"></fa-icon>
+            </div>
+        </div>
+    </ng-template>
+</p-card>

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from 'rxjs';
 import { RefBookService } from '../../shared/Services/ref-book.service';
 import { RefBookDto } from '../../shared/Models/Classes/DTOs/ReferenceBook/ref-book.dto';
+import { OfferForm } from '../../shared/Models/Classes/Forms/offer.form';
+import { IKeyNameDescPrice } from '../../shared/Models/Interfaces/i-key-value.interface';
 
 type titles = { title: string; subTitle: string; };
 
@@ -10,7 +12,7 @@ type titles = { title: string; subTitle: string; };
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
   textInfo: titles[] = [
     {
       title: 'ТИП САЙТА',
@@ -22,7 +24,11 @@ export class HomePage {
     },
     {
       title: 'ДИЗАЙН САЙТА',
-      subTitle: 'Теперь необходимо определиться, в каком формате будет создаваться дизайн сайта. Все дизайны студии Pedanto - уникальны! Мы работаем с адаптивной версткой, что позволит вашему сайту выглядеть превосходно на любом устройстве! Стоимость разработки шаблона может отличатся в зависимости от сложности проета. Количество правок к согласованному макету предложенных заказчиком в процессе создания, увеличивает его стоимость.'
+      subTitle: 'Теперь необходимо определиться, в каком формате будет создаваться дизайн сайта. Все дизайны DesignSBMPEI - уникальны! Мы работаем с адаптивной версткой, что позволит вашему сайту выглядеть превосходно на любом устройстве! Стоимость разработки шаблона может отличатся в зависимости от сложности проета. Количество правок к согласованному макету предложенных заказчиком в процессе создания, увеличивает его стоимость.'
+    },
+    {
+      title: 'Дополнительный дизайн',
+      subTitle: 'Для лучшего продвижения и развития вашего проекта'
     },
     {
       title: 'ПОДДЕРЖКА САЙТА',
@@ -39,11 +45,24 @@ export class HomePage {
     shareReplay()
   );
 
+  dataForm: OfferForm = new OfferForm();
+  totalCost: number = 0;
+
   constructor(
     private srv: RefBookService
   ) {}
 
+  ngOnInit(): void {
+  }
+
   onLog(ev: any) {
     console.log(ev);
+  }
+
+  // changeTotalCost(data: OfferForm, eventArray)
+
+  changeSiteType(event: IKeyNameDescPrice) {
+    this.dataForm.siteType = event;
+    this.totalCost = this.dataForm.siteType.price;
   }
 }

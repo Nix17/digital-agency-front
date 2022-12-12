@@ -22,6 +22,7 @@ export class ListBoxWithMyCardsComponent implements OnInit {
   ngOnInit(): void {
     if (this.multipleSelect === false && this.options.length > 0) {
       this.selectedItem = this.options[0];
+      this.changeSingleSelectedItem.emit(this.selectedItem);
     }
   }
 

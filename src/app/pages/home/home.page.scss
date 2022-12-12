@@ -1,0 +1,15 @@
+:host ::ng-deep app-total-site-host {
+    float: right !important;
+    margin-right: 2em;
+    margin-top: calc(50vh / 2);
+}
+
+.float-cost {
+    position: fixed;
+    width: 100%;
+}
+
+
+:host ::ng-deep my-list-box-with-my-cards {
+    width: 100%;
+}
