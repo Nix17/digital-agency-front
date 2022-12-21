@@ -2,7 +2,7 @@ import { IKeyName, IKeyNameDescPrice, IKeyNameDescPriceType } from "../../Interf
 
 export class OfferForm {
     siteType!: IKeyNameDescPrice;
-    siteModules: IKeyNameDescPriceType[] = [];
+    siteModules: IKeyNameDescPrice[] = [];
     siteDesign!: IKeyNameDescPrice;
     optionalDesign: IKeyNameDescPrice[] = [];
     siteSupport: IKeyNameDescPrice[] = [];

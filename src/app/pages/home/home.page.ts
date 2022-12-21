@@ -4,6 +4,7 @@ import { RefBookService } from '../../shared/Services/ref-book.service';
 import { RefBookDto } from '../../shared/Models/Classes/DTOs/ReferenceBook/ref-book.dto';
 import { OfferForm } from '../../shared/Models/Classes/Forms/offer.form';
 import { IKeyNameDescPrice } from '../../shared/Models/Interfaces/i-key-value.interface';
+import { OFFER_COST_ENUM } from '../../shared/Models/Enums/offer-cost.enum';
 
 type titles = { title: string; subTitle: string; };
 
@@ -48,6 +49,9 @@ export class HomePage implements OnInit {
   dataForm: OfferForm = new OfferForm();
   totalCost: number = 0;
 
+
+
+
   constructor(
     private srv: RefBookService
   ) {}
@@ -64,5 +68,55 @@ export class HomePage implements OnInit {
   changeSiteType(event: IKeyNameDescPrice) {
     this.dataForm.siteType = event;
     this.totalCost = this.dataForm.siteType.price;
+  }
+
+  private recalculateCost(obj: OfferForm): number {
+    let resCost: number = 0;
+
+    resCost += obj.siteType.price;
+
+    obj.siteModules.forEach((item) => {
+      resCost += item.price;
+    });
+
+    resCost += obj.siteDesign.price;
+
+    obj.optionalDesign.forEach((item) => {
+      resCost += item.price;
+    });
+
+    obj.siteSupport.forEach((item) => {
+      resCost += item.price;
+    });
+
+    return resCost;
+  }
+
+  changeTotalCost(offerEnum: OFFER_COST_ENUM, event: any) {
+    switch(offerEnum) {
+      case OFFER_COST_ENUM.SITE_TYPE:
+        this.dataForm.siteType = event as IKeyNameDescPrice;
+        break;
+
+      case OFFER_COST_ENUM.SITE_MODULES:
+        this.dataForm.siteModules = event as IKeyNameDescPrice[];
+        break;
+
+      case OFFER_COST_ENUM.SITE_DESIGN:
+        this.dataForm.siteDesign = event as IKeyNameDescPrice;
+        break;
+
+      case OFFER_COST_ENUM.OPTIONAL_DESIGN:
+        this.dataForm.optionalDesign = event as IKeyNameDescPrice[];
+        break;
+
+      case OFFER_COST_ENUM.SITE_SUPPORT:
+        this.dataForm.siteSupport = event as IKeyNameDescPrice[];
+        break;
+    }
+
+    this.totalCost = this.recalculateCost(this.dataForm);
+    this.dataForm.totalCost = this.totalCost;
+    console.log(this.dataForm);
   }
 }

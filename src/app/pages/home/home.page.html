@@ -3,7 +3,7 @@
 </ng-template>
 
 <div class="float-cost">
-  <app-total-site-host [totalCost]="0">
+  <app-total-site-host [totalCost]="totalCost">
   </app-total-site-host>
 </div>
 
@@ -29,7 +29,7 @@
               [options]="refBook.siteType"
               [widthPercent]="100"
               [multipleSelect]="false"
-              (changeSingleSelectedItem)="changeSiteType($event)"
+              (changeSingleSelectedItem)="changeTotalCost(0, $event)"
             ></my-list-box-with-my-cards>
         </div>
       </div>
@@ -46,7 +46,7 @@
               [options]="refBook.siteModules"
               [widthPercent]="100"
               [multipleSelect]="true"
-              (changeMuiltiSelectedItems)="onLog($event)"
+              (changeMuiltiSelectedItems)="changeTotalCost(1, $event)"
             ></my-list-box-with-my-cards>
         </div>
       </div>
@@ -63,7 +63,7 @@
               [options]="refBook.siteDesign"
               [widthPercent]="100"
               [multipleSelect]="false"
-              (changeSingleSelectedItem)="onLog($event)"
+              (changeSingleSelectedItem)="changeTotalCost(2, $event)"
             ></my-list-box-with-my-cards>
         </div>
       </div>
@@ -80,7 +80,7 @@
               [options]="refBook.optionalDesign"
               [widthPercent]="100"
               [multipleSelect]="true"
-              (changeMuiltiSelectedItems)="onLog($event)"
+              (changeMuiltiSelectedItems)="changeTotalCost(3, $event)"
             ></my-list-box-with-my-cards>
         </div>
       </div>
@@ -97,7 +97,7 @@
               [options]="refBook.siteSupport"
               [widthPercent]="100"
               [multipleSelect]="true"
-              (changeMuiltiSelectedItems)="onLog($event)"
+              (changeMuiltiSelectedItems)="changeTotalCost(4, $event)"
             ></my-list-box-with-my-cards>
         </div>
       </div>
