@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div *ngIf="(refBook$ | async) as refBook">
+<div *ngIf="(refBook$ | async) as refBook; else loading">
 
   <div class="grid">
     <div class="col">

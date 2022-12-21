@@ -13,21 +13,14 @@ export class ListBoxWithMyCardsComponent implements OnInit {
   @Input() title: string = '';
   @Input() subTitle: string = '';
 
-  @Output() changeSingleSelectedItem = new EventEmitter<IKeyNameDescPrice>();
+  @Output() changeSingleSelectedItem = new EventEmitter<IKeyNameDescPrice[]>();
   @Output() changeMuiltiSelectedItems = new EventEmitter<IKeyNameDescPrice[]>();
 
-  selectedItem!: IKeyNameDescPrice;
-  selectedItems: IKeyNameDescPrice[] = [];
-
-  ngOnInit(): void {
-    if (this.multipleSelect === false && this.options.length > 0) {
-      this.selectedItem = this.options[0];
-      this.changeSingleSelectedItem.emit(this.selectedItem);
-    }
-  }
+  ngOnInit(): void {}
 
   onChangeSingle(ev: any) {
-    let obj = ev.value as IKeyNameDescPrice;
+    let obj: IKeyNameDescPrice[] = [];
+    if((ev.value as IKeyNameDescPrice) !== null) obj.push(ev.value as IKeyNameDescPrice);
     this.changeSingleSelectedItem.emit(obj);
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, shareReplay, tap } from 'rxjs';
 import { RefBookService } from '../../shared/Services/ref-book.service';
 import { RefBookDto } from '../../shared/Models/Classes/DTOs/ReferenceBook/ref-book.dto';
 import { OfferForm } from '../../shared/Models/Classes/Forms/offer.form';
@@ -43,14 +43,12 @@ export class HomePage implements OnInit {
   refBook$: Observable<RefBookDto> = combineLatest([this.srv.getAll(), this._needRefresh$])
   .pipe(
     map(data => data[0]),
+    // tap(dt => console.log(dt)),
     shareReplay()
   );
 
   dataForm: OfferForm = new OfferForm();
   totalCost: number = 0;
-
-
-
 
   constructor(
     private srv: RefBookService
@@ -63,23 +61,20 @@ export class HomePage implements OnInit {
     console.log(ev);
   }
 
-  // changeTotalCost(data: OfferForm, eventArray)
-
-  changeSiteType(event: IKeyNameDescPrice) {
-    this.dataForm.siteType = event;
-    this.totalCost = this.dataForm.siteType.price;
-  }
-
   private recalculateCost(obj: OfferForm): number {
     let resCost: number = 0;
 
-    resCost += obj.siteType.price;
+    obj.siteType.forEach((item) => {
+      resCost += item.price;
+    });
 
     obj.siteModules.forEach((item) => {
       resCost += item.price;
     });
 
-    resCost += obj.siteDesign.price;
+    obj.siteDesign.forEach((item) => {
+      resCost += item.price;
+    });
 
     obj.optionalDesign.forEach((item) => {
       resCost += item.price;
@@ -92,10 +87,11 @@ export class HomePage implements OnInit {
     return resCost;
   }
 
-  changeTotalCost(offerEnum: OFFER_COST_ENUM, event: any) {
+  changeTotalCost(offerEnum: OFFER_COST_ENUM, event: IKeyNameDescPrice[]) {
+
     switch(offerEnum) {
       case OFFER_COST_ENUM.SITE_TYPE:
-        this.dataForm.siteType = event as IKeyNameDescPrice;
+        this.dataForm.siteType = event as IKeyNameDescPrice[];
         break;
 
       case OFFER_COST_ENUM.SITE_MODULES:
@@ -103,7 +99,7 @@ export class HomePage implements OnInit {
         break;
 
       case OFFER_COST_ENUM.SITE_DESIGN:
-        this.dataForm.siteDesign = event as IKeyNameDescPrice;
+        this.dataForm.siteDesign = event as IKeyNameDescPrice[];
         break;
 
       case OFFER_COST_ENUM.OPTIONAL_DESIGN:
@@ -117,6 +113,5 @@ export class HomePage implements OnInit {
 
     this.totalCost = this.recalculateCost(this.dataForm);
     this.dataForm.totalCost = this.totalCost;
-    console.log(this.dataForm);
   }
 }

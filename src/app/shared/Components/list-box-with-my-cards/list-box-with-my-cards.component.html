@@ -15,7 +15,6 @@
     <p-listbox
         *ngIf="multipleSelect === false"
         [options]="options"
-        [(ngModel)]="selectedItem"
         [metaKeySelection]="false"
         [checkbox]="true"
         [filter]="multipleSelect"
@@ -39,7 +38,6 @@
     <p-listbox
         *ngIf="multipleSelect === true"
         [options]="options"
-        [(ngModel)]="selectedItems"
         [metaKeySelection]="false"
         [checkbox]="true"
         [filter]="multipleSelect"
