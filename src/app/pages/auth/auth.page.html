@@ -1,1 +1,29 @@
-<p>auth works!</p>
+<div class="grid">
+  <div class="col">
+    <div class="flex justify-content-center flex-wrap card-container">
+      <div class="flex align-items-center justify-content-center w-6">
+        <p-card class="w-full">
+          <p-tabView>
+
+            <p-tabPanel>
+              <ng-template pTemplate="header">
+                <i class="pi pi-user"></i>
+                <span class="ml-2">Авторизация</span>
+              </ng-template>
+              <app-auth-form></app-auth-form>
+            </p-tabPanel>
+
+            <p-tabPanel>
+              <ng-template pTemplate="header">
+                <i class="pi pi-user-plus"></i>
+                <span class="ml-2">Регистрация</span>
+              </ng-template>
+              <app-reg-form></app-reg-form>
+            </p-tabPanel>
+
+          </p-tabView>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>

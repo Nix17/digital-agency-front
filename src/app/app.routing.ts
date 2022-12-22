@@ -9,7 +9,8 @@ import { NotFoundPage } from './pages/not-found/not-found.page';
 const routes: Routes = [
   {
     path: '',
-    component: HomePage
+    component: HomePage,
+    canActivate: []
   },
   {
     path: 'auth',
@@ -17,11 +18,13 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfilePage
+    component: ProfilePage,
+    canActivate: []
   },
   {
     path: 'admin-menu',
-    component: AdminMenuPage
+    component: AdminMenuPage,
+    canActivate: []
   },
   {
     path: '**',

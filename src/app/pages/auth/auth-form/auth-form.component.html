@@ -1,0 +1,51 @@
+<ng-template #loading>
+  <my-progress-spinner></my-progress-spinner>
+</ng-template>
+
+<div [formGroup]="form">
+  <div class="field grid mt-2 justify-content-center align-content-center">
+    <div class="col-8">
+      <span class="p-float-label">
+        <input
+          id="float-email"
+          type="text"
+          pInputText
+          [(ngModel)]="authForm.email"
+          class="w-full"
+          formControlName="email"
+        />
+        <label for="float-email">E-mail</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="grid mt-2 justify-content-center align-content-center">
+    <div class="col-8">
+      <span class="p-float-label">
+        <p-password
+          [(ngModel)]="authForm.password"
+          [toggleMask]="true"
+          styleClass="w-full"
+          inputStyleClass="w-full"
+          formControlName="password"
+        ></p-password>
+        <label for="float-input">Пароль</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="grid mt-2 justify-content-center"></div>
+  <div class="col">
+    <div class="flex justify-content-center flex-wrap card-container">
+      <div class="flex align-items-center justify-content-center w-8">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Войти"
+          class="w-full"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
