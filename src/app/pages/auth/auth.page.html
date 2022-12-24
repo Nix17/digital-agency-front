@@ -3,25 +3,42 @@
     <div class="flex justify-content-center flex-wrap card-container">
       <div class="flex align-items-center justify-content-center w-6">
         <p-card class="w-full">
-          <p-tabView>
-
-            <p-tabPanel>
-              <ng-template pTemplate="header">
-                <i class="pi pi-user"></i>
-                <span class="ml-2">Авторизация</span>
+          <ng-template pTemplate="header">
+            <div [ngSwitch]="switchVar">
+              <ng-template ngSwitchCase="auth">
+                <div class="flex justify-content-center flex-wrap card-container">
+                  <div class="flex align-items-center justify-content-center w-6 mt-3">
+                    <i class="pi pi-user"></i>
+                    <span class="ml-2 text-lg font-semibold">Авторизация</span>
+                  </div>
+                </div>
               </ng-template>
-              <app-auth-form></app-auth-form>
-            </p-tabPanel>
 
-            <p-tabPanel>
-              <ng-template pTemplate="header">
-                <i class="pi pi-user-plus"></i>
-                <span class="ml-2">Регистрация</span>
+              <ng-template ngSwitchCase="reg">
+                <div class="flex justify-content-center flex-wrap card-container">
+                  <div class="flex align-items-center justify-content-center w-6 mt-3">
+                    <i class="pi pi-user-plus"></i>
+                    <span class="ml-2 text-lg font-semibold">Регистрация</span>
+                  </div>
+                </div>
               </ng-template>
-              <app-reg-form></app-reg-form>
-            </p-tabPanel>
+            </div>
+          </ng-template>
 
-          </p-tabView>
+          <div [ngSwitch]="switchVar">
+            <ng-template ngSwitchCase="auth">
+              <app-auth-form
+                (openReg)="changeForm($event)"
+              ></app-auth-form>
+            </ng-template>
+
+            <ng-template ngSwitchCase="reg">
+              <app-reg-form
+                (openAuth)="changeForm($event)"
+              ></app-reg-form>
+            </ng-template>
+          </div>
+
         </p-card>
       </div>
     </div>
