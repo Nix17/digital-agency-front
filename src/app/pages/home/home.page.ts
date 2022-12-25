@@ -4,7 +4,7 @@ import { RefBookService } from '../../shared/Services/ref-book.service';
 import { RefBookDto } from '../../shared/Models/Classes/DTOs/ReferenceBook/ref-book.dto';
 import { OfferForm } from '../../shared/Models/Classes/Forms/offer.form';
 import { IKeyNameDescPrice } from '../../shared/Models/Interfaces/i-key-value.interface';
-import { OFFER_COST_ENUM } from '../../shared/Models/Enums/offer-cost.enum';
+import { DictionaryIdentificator } from '../../shared/Models/Enums/offer-cost.enum';
 
 type titles = { title: string; subTitle: string; };
 
@@ -87,26 +87,26 @@ export class HomePage implements OnInit {
     return resCost;
   }
 
-  changeTotalCost(offerEnum: OFFER_COST_ENUM, event: IKeyNameDescPrice[]) {
+  changeTotalCost(offerEnum: DictionaryIdentificator, event: IKeyNameDescPrice[]) {
 
     switch(offerEnum) {
-      case OFFER_COST_ENUM.SITE_TYPE:
+      case DictionaryIdentificator.SITE_TYPE:
         this.dataForm.siteType = event as IKeyNameDescPrice[];
         break;
 
-      case OFFER_COST_ENUM.SITE_MODULES:
+      case DictionaryIdentificator.SITE_MODULES:
         this.dataForm.siteModules = event as IKeyNameDescPrice[];
         break;
 
-      case OFFER_COST_ENUM.SITE_DESIGN:
+      case DictionaryIdentificator.SITE_DESIGN:
         this.dataForm.siteDesign = event as IKeyNameDescPrice[];
         break;
 
-      case OFFER_COST_ENUM.OPTIONAL_DESIGN:
+      case DictionaryIdentificator.OPTIONAL_DESIGN:
         this.dataForm.optionalDesign = event as IKeyNameDescPrice[];
         break;
 
-      case OFFER_COST_ENUM.SITE_SUPPORT:
+      case DictionaryIdentificator.SITE_SUPPORT:
         this.dataForm.siteSupport = event as IKeyNameDescPrice[];
         break;
     }

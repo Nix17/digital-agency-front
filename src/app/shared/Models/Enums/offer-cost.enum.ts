@@ -1,4 +1,4 @@
-export enum OFFER_COST_ENUM {
+export enum DictionaryIdentificator {
   SITE_TYPE = 0,
   SITE_MODULES = 1,
   SITE_DESIGN = 2,

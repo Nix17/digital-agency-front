@@ -2,7 +2,7 @@ import { IKeyNameDescPrice, IKeyNameDescPriceType, IKeyName } from '../../../Int
 
 export class RefBookDto {
   siteType: IKeyNameDescPrice[] = [];
-  siteModules: IKeyNameDescPriceType[] = [];
+  siteModules: IKeyNameDescPrice[] = [];
   siteDesign: IKeyNameDescPrice[] = [];
   optionalDesign: IKeyNameDescPrice[] = [];
   siteSupport: IKeyNameDescPrice[] = [];
