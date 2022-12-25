@@ -7,13 +7,14 @@
     <div class="col-8">
       <span class="p-float-label">
         <input
-          id="float-email"
+          id="email"
           type="text"
           pInputText
           class="w-full"
           formControlName="email"
+          [ngClass]="{'ng-dirty': email?.touched}"
         />
-        <label for="float-email">E-mail</label>
+        <label for="email">E-mail</label>
       </span>
     </div>
   </div>
@@ -22,13 +23,15 @@
     <div class="col-8">
       <span class="p-float-label">
         <p-password
+          id="password"
           [toggleMask]="true"
           styleClass="w-full"
           inputStyleClass="w-full"
           formControlName="password"
           [feedback]="false"
+          [ngClass]="{'ng-dirty': password?.touched}"
         ></p-password>
-        <label for="float-input">Пароль</label>
+        <label for="password">Пароль</label>
       </span>
     </div>
   </div>
@@ -36,7 +39,7 @@
   <div class="grid mt-2 justify-content-center"></div>
   <div class="col">
     <div class="flex justify-content-center flex-wrap card-container">
-      <div class="flex align-items-center justify-content-center w-8">
+      <div *ngIf="!load; else loading" class="flex align-items-center justify-content-center w-8">
         <div class="grid w-full">
           <div class="col">
             <button
@@ -56,6 +59,7 @@
               type="button"
               label="Войти"
               class="w-full"
+              (click)="onSubmit()"
             ></button>
           </div>
         </div>

@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PrimengSharedModule } from './primeng-shared.module';
 import { MyProgressSpinnerComponent } from '../Components/my-progress-spinner/my-progress-spinner.component';
 import { LayoutComponent } from '../Components/layout/layout.component';
@@ -10,7 +9,9 @@ import { CheckBoxCardComponent } from '../Components/check-box-card/check-box-ca
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NullMoneyPipe } from '../Pipes/null-money.pipe';
 import { ListBoxWithMyCardsComponent } from '../Components/list-box-with-my-cards/list-box-with-my-cards.component';
-
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { MyMessageService } from '../Services/my-message.service';
+import { MessagesItemsComponent } from '../Components/messages-items/messages-items.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ListBoxWithMyCardsComponent } from '../Components/list-box-with-my-card
     LayoutComponent,
     CheckBoxCardComponent,
     NullMoneyPipe,
-    ListBoxWithMyCardsComponent
+    ListBoxWithMyCardsComponent,
+    MessagesItemsComponent
   ],
   imports: [
     CommonModule,
@@ -39,8 +41,24 @@ import { ListBoxWithMyCardsComponent } from '../Components/list-box-with-my-card
     CheckBoxCardComponent,
     FontAwesomeModule,
     NullMoneyPipe,
-    ListBoxWithMyCardsComponent
+    ListBoxWithMyCardsComponent,
+    MessagesItemsComponent
   ],
-  providers: []
+  providers: [
+    MessageService,
+    ConfirmationService,
+    MyMessageService
+  ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders<SharedModule> {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        MessageService,
+        ConfirmationService,
+        MyMessageService
+      ]
+    };
+  }
+}

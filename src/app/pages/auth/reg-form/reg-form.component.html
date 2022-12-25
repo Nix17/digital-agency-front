@@ -7,13 +7,79 @@
     <div class="col-8">
       <span class="p-float-label">
         <input
-          id="float-email"
+          id="lastName"
+          type="text"
+          pInputText
+          class="w-full"
+          [ngClass]="{'ng-dirty': lastName?.touched}"
+          formControlName="lastName"
+        />
+        <label for="lastName">Фамилия</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="field grid mt-4 justify-content-center align-content-center">
+    <div class="col-8">
+      <span class="p-float-label">
+        <input
+          id="firstName"
+          type="text"
+          pInputText
+          class="w-full"
+          formControlName="firstName"
+          [ngClass]="{'ng-dirty': firstName?.touched}"
+        />
+        <label for="firstName">Имя</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="field grid mt-4 justify-content-center align-content-center">
+    <div class="col-8">
+      <span class="p-float-label">
+        <input
+          id="middleName"
+          type="text"
+          pInputText
+          class="w-full"
+          formControlName="middleName"
+          [ngClass]="{'ng-dirty': middleName?.touched}"
+        />
+        <label for="middleName">Отчество</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="field grid mt-4 justify-content-center align-content-center">
+    <div class="col-8">
+      <span class="p-float-label">
+        <p-inputMask
+          id="phone"
+          name="phone"
+          type="tel"
+          mask="+7 (999) 999-99-99"
+          formControlName="phone"
+          styleClass="w-full"
+          [ngClass]="{'ng-dirty': phone?.touched}"
+        ></p-inputMask>
+        <label for="phone">Номер телефона</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="field grid mt-4 justify-content-center align-content-center">
+    <div class="col-8">
+      <span class="p-float-label">
+        <input
+          id="email"
           type="text"
           pInputText
           class="w-full"
           formControlName="email"
+          [ngClass]="{'ng-dirty': email?.touched}"
         />
-        <label for="float-email">E-mail</label>
+        <label for="email">E-mail</label>
       </span>
     </div>
   </div>
@@ -22,19 +88,21 @@
     <div class="col-8">
       <span class="p-float-label">
         <p-password
+          id="password"
           [toggleMask]="true"
           styleClass="w-full"
           inputStyleClass="w-full"
           formControlName="password"
+          [ngClass]="{'ng-dirty': password?.touched}"
         ></p-password>
-        <label for="float-input">Пароль</label>
+        <label for="password">Пароль</label>
       </span>
     </div>
   </div>
 
   <div class="grid mt-2 justify-content-center"></div>
   <div class="col">
-    <div class="flex justify-content-center flex-wrap card-container">
+    <div *ngIf="!load; else loading" class="flex justify-content-center flex-wrap card-container">
       <div class="flex align-items-center justify-content-center w-8">
         <div class="grid w-full">
           <div class="col">
@@ -55,6 +123,7 @@
               type="button"
               label="Создать"
               class="w-full"
+              (click)="onSubmit()"
             ></button>
           </div>
         </div>
@@ -62,3 +131,4 @@
     </div>
   </div>
 </div>
+

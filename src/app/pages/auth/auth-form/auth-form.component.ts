@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserAuthForm } from 'src/app/shared/Models/Classes/Forms/user-auth.form';
+import { MyMessageService } from 'src/app/shared/Services/my-message.service';
 import { CASE_AUTH_REG_ENUM } from '../../../shared/Models/Enums/case-auth-reg.enum';
 
 @Component({
@@ -9,19 +10,37 @@ import { CASE_AUTH_REG_ENUM } from '../../../shared/Models/Enums/case-auth-reg.e
   styleUrls: ['./auth-form.component.scss']
 })
 export class AuthFormComponent implements OnInit {
-  authForm: UserAuthForm = new UserAuthForm();
-  form: FormGroup = new FormGroup({});
 
   @Output() openReg = new EventEmitter<CASE_AUTH_REG_ENUM>();
 
+  load: boolean = false;
+
+  authData: UserAuthForm = new UserAuthForm();
+  form: FormGroup = new FormGroup({});
+
+  get email() { return this.form.get('email'); }
+  get password() { return this.form.get('password'); }
+
+  constructor(
+    private srvMsg: MyMessageService,
+  ) {}
+
   ngOnInit(): void {
     this.form = new FormGroup({
-      "email": new FormControl("", [Validators.email]),
+      "email": new FormControl("", [Validators.email, Validators.required]),
       "password": new FormControl("", [Validators.required])
     });
   }
 
   onOpenRegForm() {
     this.openReg.emit(CASE_AUTH_REG_ENUM.REG);
+  }
+
+  onSubmit() {
+    if (this.form.invalid) return this.srvMsg.showError('Необходимо заполнить все поля!!');
+    this.load = true;
+
+    this.authData = this.form.value;
+    console.log(this.authData);
   }
 }
