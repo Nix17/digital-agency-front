@@ -1,34 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePage } from './pages/home/home.page';
-import { AuthPage } from './pages/auth/auth.page';
-import { ProfilePage } from './pages/profile/profile.page';
-import { AdminMenuPage } from './pages/admin-menu/admin-menu.page';
-import { NotFoundPage } from './pages/not-found/not-found.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomePage,
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+    pathMatch: 'full',
     canActivate: []
   },
   {
     path: 'auth',
-    component: AuthPage
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+    pathMatch: 'full'
   },
   {
     path: 'profile',
-    component: ProfilePage,
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
+    pathMatch: 'full',
     canActivate: []
   },
   {
     path: 'admin-menu',
-    component: AdminMenuPage,
+    loadChildren: () => import('./pages/admin-menu/admin-menu.module').then(m => m.AdminMenuModule),
+    pathMatch: 'full',
     canActivate: []
   },
   {
     path: '**',
-    component: NotFoundPage
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule),
+    pathMatch: 'full'
   }
 ];
 
