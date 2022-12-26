@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div *ngIf="(refBook$ | async) as refBook; else loading">
+<div *ngIf="(siteTypes$ | async) as siteTypes">
 
   <div class="grid">
     <div class="col">
@@ -26,7 +26,7 @@
           <my-list-box-with-my-cards
               [title]="textInfo[0].title"
               [subTitle]="textInfo[0].subTitle"
-              [options]="refBook.siteType"
+              [options]="siteTypes"
               [widthPercent]="100"
               [multipleSelect]="false"
               (changeSingleSelectedItem)="changeTotalCost(0, $event)"
@@ -36,14 +36,14 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div class="grid" *ngIf="(siteModules$ | async) as siteModules">
     <div class="col">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
           <my-list-box-with-my-cards
               [title]="textInfo[1].title"
               [subTitle]="textInfo[1].subTitle"
-              [options]="refBook.siteModules"
+              [options]="siteModules"
               [widthPercent]="100"
               [multipleSelect]="true"
               (changeMuiltiSelectedItems)="changeTotalCost(1, $event)"
@@ -53,14 +53,14 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div class="grid" *ngIf="(siteDesigns$ | async) as siteDesigns">
     <div class="col">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
           <my-list-box-with-my-cards
               [title]="textInfo[2].title"
               [subTitle]="textInfo[2].subTitle"
-              [options]="refBook.siteDesign"
+              [options]="siteDesigns"
               [widthPercent]="100"
               [multipleSelect]="false"
               (changeSingleSelectedItem)="changeTotalCost(2, $event)"
@@ -70,14 +70,14 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div class="grid" *ngIf="(optionalDesigns$ | async) as optionalDesigns">
     <div class="col">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
           <my-list-box-with-my-cards
               [title]="textInfo[3].title"
               [subTitle]="textInfo[3].subTitle"
-              [options]="refBook.optionalDesign"
+              [options]="optionalDesigns"
               [widthPercent]="100"
               [multipleSelect]="true"
               (changeMuiltiSelectedItems)="changeTotalCost(3, $event)"
@@ -87,14 +87,14 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div class="grid" *ngIf="(siteSupports$ | async) as siteSupports">
     <div class="col">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
           <my-list-box-with-my-cards
               [title]="textInfo[4].title"
               [subTitle]="textInfo[4].subTitle"
-              [options]="refBook.siteSupport"
+              [options]="siteSupports"
               [widthPercent]="100"
               [multipleSelect]="true"
               (changeMuiltiSelectedItems)="changeTotalCost(4, $event)"

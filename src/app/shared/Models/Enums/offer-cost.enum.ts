@@ -1,4 +1,4 @@
-export enum DictionaryIdentificator {
+export enum DictionaryIdentificators {
   SITE_TYPE = 0,
   SITE_MODULES = 1,
   SITE_DESIGN = 2,

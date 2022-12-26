@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'assets/temp-data/',
+  apiUrl: 'https://localhost:7170/api/',
 };
 
 /*

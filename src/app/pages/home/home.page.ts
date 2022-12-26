@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Observable, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { RefBookService } from '../../shared/Services/ref-book.service';
 import { RefBookDto } from '../../shared/Models/Classes/DTOs/ReferenceBook/ref-book.dto';
 import { OfferForm } from '../../shared/Models/Classes/Forms/offer.form';
 import { IKeyNameDescPrice } from '../../shared/Models/Interfaces/i-key-value.interface';
-import { DictionaryIdentificator } from '../../shared/Models/Enums/offer-cost.enum';
+import { DictionaryIdentificators } from '../../shared/Models/Enums/offer-cost.enum';
+import { DictionaryIdentificator } from '../../shared/Models/Enums/dictionary-identificator.enum';
+import { KeyNameDescPriceDTO } from '../../shared/Models/Classes/DTOs/base/key-value.dto';
 
 type titles = { title: string; subTitle: string; };
 
@@ -40,10 +42,33 @@ export class HomePage implements OnInit {
   private _refresh$ = new BehaviorSubject<boolean>(false);
   private _needRefresh$ = this._refresh$.asObservable();
 
-  refBook$: Observable<RefBookDto> = combineLatest([this.srv.getAll(), this._needRefresh$])
+  siteTypes$: Observable<KeyNameDescPriceDTO[]> = combineLatest([this.srv.getDictAllByIdentificator(DictionaryIdentificator.SityType), this._needRefresh$])
   .pipe(
     map(data => data[0]),
-    // tap(dt => console.log(dt)),
+    shareReplay()
+  );
+
+  siteModules$: Observable<KeyNameDescPriceDTO[]> = this.siteTypes$.pipe(
+    switchMap(() => this.srv.getDictAllByIdentificator(DictionaryIdentificator.SiteModules)),
+    map(data => data),
+    shareReplay()
+  );
+
+  siteDesigns$: Observable<KeyNameDescPriceDTO[]> = this.siteTypes$.pipe(
+    switchMap(() => this.srv.getDictAllByIdentificator(DictionaryIdentificator.SiteDesign)),
+    map(data => data),
+    shareReplay()
+  );
+
+  optionalDesigns$: Observable<KeyNameDescPriceDTO[]> = this.siteTypes$.pipe(
+    switchMap(() => this.srv.getDictAllByIdentificator(DictionaryIdentificator.OptionalDesign)),
+    map(data => data),
+    shareReplay()
+  );
+
+  siteSupports$: Observable<KeyNameDescPriceDTO[]> = this.siteTypes$.pipe(
+    switchMap(() => this.srv.getDictAllByIdentificator(DictionaryIdentificator.SiteSupport)),
+    map(data => data),
     shareReplay()
   );
 
@@ -87,26 +112,26 @@ export class HomePage implements OnInit {
     return resCost;
   }
 
-  changeTotalCost(offerEnum: DictionaryIdentificator, event: IKeyNameDescPrice[]) {
+  changeTotalCost(offerEnum: DictionaryIdentificators, event: IKeyNameDescPrice[]) {
 
     switch(offerEnum) {
-      case DictionaryIdentificator.SITE_TYPE:
+      case DictionaryIdentificators.SITE_TYPE:
         this.dataForm.siteType = event as IKeyNameDescPrice[];
         break;
 
-      case DictionaryIdentificator.SITE_MODULES:
+      case DictionaryIdentificators.SITE_MODULES:
         this.dataForm.siteModules = event as IKeyNameDescPrice[];
         break;
 
-      case DictionaryIdentificator.SITE_DESIGN:
+      case DictionaryIdentificators.SITE_DESIGN:
         this.dataForm.siteDesign = event as IKeyNameDescPrice[];
         break;
 
-      case DictionaryIdentificator.OPTIONAL_DESIGN:
+      case DictionaryIdentificators.OPTIONAL_DESIGN:
         this.dataForm.optionalDesign = event as IKeyNameDescPrice[];
         break;
 
-      case DictionaryIdentificator.SITE_SUPPORT:
+      case DictionaryIdentificators.SITE_SUPPORT:
         this.dataForm.siteSupport = event as IKeyNameDescPrice[];
         break;
     }
