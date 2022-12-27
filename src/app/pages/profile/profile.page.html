@@ -1,1 +1,33 @@
-<p>profile works!</p>
+<ng-template #loading>
+  <my-progress-spinner></my-progress-spinner>
+</ng-template>
+
+<div class="grid">
+  <div class="col">
+    <div class="flex justify-content-center flex-wrap card-container">
+      <div class="flex align-items-center justify-content-center w-8">
+        <p-card class="w-full">
+
+          <p-tabView>
+            <p-tabPanel
+              leftIcon="pi pi-id-card"
+              header="Личная информация"
+              [selected]="true"
+            >
+              <app-profile-info
+              ></app-profile-info>
+            </p-tabPanel>
+            <p-tabPanel
+              leftIcon="pi pi-book"
+              header="Мои заказы"
+            >
+              <app-order-info
+              ></app-order-info>
+            </p-tabPanel>
+          </p-tabView>
+
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>

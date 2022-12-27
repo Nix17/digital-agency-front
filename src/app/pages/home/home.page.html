@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div *ngIf="(siteTypes$ | async) as siteTypes">
+<div *ngIf="(siteTypes$ | async) as siteTypes; else loading">
 
   <div class="grid">
     <div class="col">
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div class="grid" *ngIf="(siteModules$ | async) as siteModules">
+  <div class="grid" *ngIf="(siteModules$ | async) as siteModules; else loading">
     <div class="col">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <div class="grid" *ngIf="(siteDesigns$ | async) as siteDesigns">
+  <div class="grid" *ngIf="(siteDesigns$ | async) as siteDesigns; else loading">
     <div class="col">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <div class="grid" *ngIf="(optionalDesigns$ | async) as optionalDesigns">
+  <div class="grid" *ngIf="(optionalDesigns$ | async) as optionalDesigns; else loading">
     <div class="col">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
@@ -87,7 +87,7 @@
     </div>
   </div>
 
-  <div class="grid" *ngIf="(siteSupports$ | async) as siteSupports">
+  <div class="grid" *ngIf="(siteSupports$ | async) as siteSupports; else loading">
     <div class="col">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
