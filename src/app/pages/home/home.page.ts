@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { RefBookService } from '../../shared/Services/ref-book.service';
 import { RefBookDto } from '../../shared/Models/Classes/DTOs/ReferenceBook/ref-book.dto';
-import { OfferForm } from '../../shared/Models/Classes/Forms/offer.form';
+import { OfferIntermediateForm } from '../../shared/Models/Classes/Forms/offer-intermediate.form';
 import { IKeyNameDescPrice } from '../../shared/Models/Interfaces/i-key-value.interface';
 import { DictionaryIdentificators } from '../../shared/Models/Enums/offer-cost.enum';
 import { DictionaryIdentificator } from '../../shared/Models/Enums/dictionary-identificator.enum';
@@ -72,7 +72,7 @@ export class HomePage implements OnInit {
     shareReplay()
   );
 
-  dataForm: OfferForm = new OfferForm();
+  dataForm: OfferIntermediateForm = new OfferIntermediateForm();
   totalCost: number = 0;
 
   constructor(
@@ -86,7 +86,7 @@ export class HomePage implements OnInit {
     console.log(ev);
   }
 
-  private recalculateCost(obj: OfferForm): number {
+  private recalculateCost(obj: OfferIntermediateForm): number {
     let resCost: number = 0;
 
     obj.siteType.forEach((item) => {

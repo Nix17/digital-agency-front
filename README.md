@@ -81,13 +81,19 @@ urgencyRef {
 offerSrvTavle {
   num,
   siteTypeId,
-  moduleId,
   designId,
-  support,
   client,
   comMethod,
   commonPrice,
   urgencyId
+}
+
+offerModules,
+offerOptionalDesigns,
+offerSupport {
+  id,
+  offerId,
+  entityId
 }
 
 orderSrvTable {

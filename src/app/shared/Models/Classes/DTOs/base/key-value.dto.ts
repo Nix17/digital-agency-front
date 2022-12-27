@@ -22,3 +22,8 @@ export interface KeyNameDescPriceDTO extends AuditableIntIdDTO {
   description: string;
   price: number;
 }
+
+export interface KeyValueDTO {
+  id: string;
+  value: string;
+}

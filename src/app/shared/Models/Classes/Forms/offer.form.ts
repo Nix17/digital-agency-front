@@ -1,10 +1,13 @@
-import { IKeyName, IKeyNameDescPrice, IKeyNameDescPriceType } from "../../Interfaces/i-key-value.interface";
-
 export class OfferForm {
-    siteType: IKeyNameDescPrice[] = [];
-    siteModules: IKeyNameDescPrice[] = [];
-    siteDesign: IKeyNameDescPrice[] = [];
-    optionalDesign: IKeyNameDescPrice[] = [];
-    siteSupport: IKeyNameDescPrice[] = [];
-    totalCost: number = 0;
+  offerNumber: number = 0;
+  userId: string = '';
+  cost: number = 0;
+  developmentTimelineId: number = 0;
+  siteTypeId: number = 0;
+  siteDesignId: number = 0;
+  orderDate: string = '';
+  comment: string = '';
+  siteModulesIds: number[] = [];
+  optionalDesignIds: number[] = [];
+  siteSupportIds: number[] = [];
 }
