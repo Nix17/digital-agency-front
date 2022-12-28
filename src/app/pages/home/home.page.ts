@@ -229,7 +229,7 @@ export class HomePage implements OnInit {
       supportsIds
     );
 
-    console.log(JSON.stringify(sendOfferObj));
+    // console.log(JSON.stringify(sendOfferObj));
 
     this.srvOffer.createNew(sendOfferObj)
     .pipe(untilDestroyed(this))
