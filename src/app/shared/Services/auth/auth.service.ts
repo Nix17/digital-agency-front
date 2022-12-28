@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 import { Account } from '../../Models/Classes/account/account';
 import { UserAuthForm } from '../../Models/Classes/Forms/user-auth.form';
-import { Observable, map, shareReplay, tap } from 'rxjs';
+import { Observable, map, shareReplay, tap, BehaviorSubject } from 'rxjs';
 import { IResponse } from '../../Models/Interfaces/base/base.response';
 import { UserRegForm } from '../../Models/Classes/Forms/user-reg.form';
 import { environment } from '../../../../environments/environment';
@@ -26,6 +26,15 @@ export class AuthService {
     private router: Router,
     private srvMsg: MyMessageService
   ) { }
+
+  private _isLogin$ = new BehaviorSubject<boolean>(this.isLoggedIn);
+  private isLoginNow = this._isLogin$.asObservable();
+
+  public get isLoginObservable(): Observable<boolean> {
+    return this.isLoginNow.pipe(
+      map(data => data)
+    );
+  }
 
   public get isLoggedIn(): boolean {
     let auth = this.lStorage.getData(this._key);
@@ -55,6 +64,7 @@ export class AuthService {
   private saveAccountOnStorage(data: Account,msg: string = '') {
     if(data !== null || data !== undefined) {
       this.lStorage.saveData(this._key, data);
+      this._isLogin$.next(true);
       this.srvMsg.showSuccess(msg);
       this.router.navigate(['/', 'profile']);
     }
@@ -63,6 +73,7 @@ export class AuthService {
   private removeAccountFromStorage(data: boolean) {
     if (data) {
       this.lStorage.removeData(this._key);
+      this._isLogin$.next(false);
       this.srvMsg.showSuccess(`До свидания!`);
       this.router.navigate(['/', 'auth']);
     }

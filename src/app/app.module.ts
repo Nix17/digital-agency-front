@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/Modules/shared.module';
 import { LocalStorageService } from './shared/Services/auth/local-storage.service';
 import { AuthService } from './shared/Services/auth/auth.service';
+import { AuthStore } from './shared/Services/auth/auth.store';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthService } from './shared/Services/auth/auth.service';
   ],
   providers: [
     LocalStorageService,
-    AuthService
+    AuthService,
+    AuthStore
   ],
   bootstrap: [AppComponent]
 })
