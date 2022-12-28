@@ -6,6 +6,9 @@ import { IKeyNameDescPrice } from '../../shared/Models/Interfaces/i-key-value.in
 import { DictionaryIdentificators } from '../../shared/Models/Enums/offer-cost.enum';
 import { DictionaryIdentificator } from '../../shared/Models/Enums/dictionary-identificator.enum';
 import { KeyNameDescPriceDTO } from '../../shared/Models/Classes/DTOs/base/key-value.dto';
+import { DevTimelineService } from 'src/app/shared/Services/development-timeline/dev-timeline.service';
+import { OfferService } from '../../shared/Services/offer/offer.service';
+import { DevelopmentTimelineDTO } from '../../shared/Models/Classes/DTOs/development-timeline.dto';
 
 type titles = { title: string; subTitle: string; };
 
@@ -71,14 +74,28 @@ export class HomePage implements OnInit {
     shareReplay()
   );
 
+  devTimeline$: Observable<DevelopmentTimelineDTO[]> = this.siteTypes$.pipe(
+    switchMap(() => this.srvDevTime.getAll()),
+    map(data => data),
+    shareReplay()
+  );
+
+  selectedTimeline!: DevelopmentTimelineDTO;
+
   dataForm: OfferIntermediateForm = new OfferIntermediateForm();
   totalCost: number = 0;
 
   constructor(
-    private srv: RefBookService
+    private srv: RefBookService,
+    private srvDevTime: DevTimelineService,
+    private srvOffer: OfferService
   ) {}
 
   ngOnInit(): void {
+  }
+
+  onChangeRadioBtn() {
+    this.totalCost = this.recalculateCost(this.dataForm);
   }
 
   onLog(ev: any) {
@@ -107,6 +124,10 @@ export class HomePage implements OnInit {
     obj.siteSupport.forEach((item) => {
       resCost += item.price;
     });
+
+    if (this.dataForm.developmentTimeline !== undefined) {
+      resCost = Number((resCost * this.dataForm.developmentTimeline.multiplicationFactor).toFixed(2));
+    }
 
     return resCost;
   }

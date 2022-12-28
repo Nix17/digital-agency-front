@@ -104,4 +104,69 @@
     </div>
   </div>
 
+  <div class="grid" *ngIf="(devTimeline$ | async) as devTimeline; else loading">
+    <div class="col">
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+          <p-card header="Сроки разработки" class="w-full">
+
+            <div class="card">
+              <div class="flex justify-content-start pl-4 flex-wrap card-container">
+                <div *ngFor="let item of devTimeline" class="field-checkbox w-8">
+                  <p-radioButton
+                    [inputId]="item.id.toString()"
+                    name="name"
+                    [value]="item"
+                    [label]="item.name"
+                    [(ngModel)]="dataForm.developmentTimeline"
+                    (onClick)="onChangeRadioBtn()"
+                  ></p-radioButton>
+                  <label [for]="item.id">(Коэффициент увеличения цены - {{ item.multiplicationFactor.toFixed(1) }})</label>
+                </div>
+              </div>
+            </div>
+
+          </p-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid" *ngIf="(devTimeline$ | async) as devTimeline; else loading">
+    <div class="col">
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+          <p-card header="Комментарий" class="w-full">
+
+            <textarea class="w-full" [rows]="7" pInputTextarea [(ngModel)]="dataForm.comment"></textarea>
+
+          </p-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="col">
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+
+          <p-card class="w-full">
+            <p-divider align="center">
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Получить предложение"
+                class="p-button-raised p-button-info"
+                icon="pi pi-shopping-bag"
+              ></button>
+            </p-divider>
+          </p-card>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
