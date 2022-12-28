@@ -7,6 +7,10 @@ export class LocalStorageService<T> {
 
   constructor() { }
 
+  public get length(): number {
+    return localStorage.length;
+  }
+
   public saveData(key: string, value: T) {
     localStorage.setItem(key, JSON.stringify(value));
   }

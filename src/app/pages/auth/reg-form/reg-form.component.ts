@@ -3,7 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CASE_AUTH_REG_ENUM } from 'src/app/shared/Models/Enums/case-auth-reg.enum';
 import { MyMessageService } from '../../../shared/Services/my-message.service';
 import { UserRegForm } from '../../../shared/Models/Classes/Forms/user-reg.form';
+import { AuthService } from 'src/app/shared/Services/auth/auth.service';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-reg-form',
   templateUrl: './reg-form.component.html',
@@ -27,6 +30,7 @@ export class RegFormComponent implements OnInit {
 
   constructor(
     private srvMsg: MyMessageService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +53,16 @@ export class RegFormComponent implements OnInit {
     this.load = true;
 
     this.regData = this.form.value;
-    console.log(this.regData);
+    this.auth.registrationUser(this.regData).pipe(untilDestroyed(this))
+    .subscribe(
+      () => {
+        this.load = false;
+        this.form.reset();
+      },
+      (error) => {
+        this.load = false;
+        this.srvMsg.showException(error)
+      }
+    );
   }
 }

@@ -6,7 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/Modules/shared.module';
-import { LocalStorageService } from './shared/Services/local-storage.service';
+import { LocalStorageService } from './shared/Services/auth/local-storage.service';
+import { AuthService } from './shared/Services/auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,11 @@ import { LocalStorageService } from './shared/Services/local-storage.service';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule.forRoot(),
+    SharedModule,
   ],
   providers: [
-    LocalStorageService
+    LocalStorageService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

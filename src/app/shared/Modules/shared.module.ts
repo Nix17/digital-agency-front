@@ -54,14 +54,14 @@ import { BoolToTextPipe } from '../Pipes/bool-to-text.pipe';
   ]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders<SharedModule> {
-    return {
-      ngModule: SharedModule,
-      providers: [
-        MessageService,
-        ConfirmationService,
-        MyMessageService
-      ]
-    };
-  }
+  // static forRoot(): ModuleWithProviders<SharedModule> {
+  //   return {
+  //     ngModule: SharedModule,
+  //     providers: [
+  //       MessageService,
+  //       ConfirmationService,
+  //       MyMessageService
+  //     ]
+  //   };
+  // }
 }

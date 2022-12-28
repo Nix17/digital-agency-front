@@ -1,9 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserAuthForm } from 'src/app/shared/Models/Classes/Forms/user-auth.form';
 import { MyMessageService } from 'src/app/shared/Services/my-message.service';
 import { CASE_AUTH_REG_ENUM } from '../../../shared/Models/Enums/case-auth-reg.enum';
+import { AuthService } from '../../../shared/Services/auth/auth.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
@@ -23,6 +26,7 @@ export class AuthFormComponent implements OnInit {
 
   constructor(
     private srvMsg: MyMessageService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +45,16 @@ export class AuthFormComponent implements OnInit {
     this.load = true;
 
     this.authData = this.form.value;
-    console.log(this.authData);
+    this.auth.login(this.authData).pipe(untilDestroyed(this))
+    .subscribe(
+      (data) => {
+        this.load = false;
+        this.form.reset();
+      },
+      (error) => {
+        this.load = false;
+        this.srvMsg.showException(error)
+      }
+    );
   }
 }

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/Guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
     pathMatch: 'full',
-    canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: 'auth',
@@ -17,13 +18,13 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
     pathMatch: 'full',
-    canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin-menu',
     loadChildren: () => import('./pages/admin-menu/admin-menu.module').then(m => m.AdminMenuModule),
     pathMatch: 'full',
-    canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

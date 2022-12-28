@@ -25,6 +25,10 @@ export class MyMessageService {
     this.messageService.add(objMsg);
   }
 
+  public showInfo(msg: string) {
+    this.messageService.add({ severity: 'info', summary: 'Интформация', detail: msg, life: 3000 });
+  }
+
   public showSuccess(msg: string) {
     this.showMessage(msg, true);
   }
