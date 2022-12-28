@@ -39,6 +39,7 @@ import { BlockUIModule } from 'primeng/blockui';
 import { CaptchaModule } from 'primeng/captcha';
 import { ChipModule } from 'primeng/chip';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   exports: [
@@ -81,7 +82,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     BlockUIModule,
     CaptchaModule,
     ChipModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    PanelModule
   ],
 })
 export class PrimengSharedModule { }

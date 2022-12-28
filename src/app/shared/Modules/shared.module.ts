@@ -12,6 +12,7 @@ import { ListBoxWithMyCardsComponent } from '../Components/list-box-with-my-card
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { MyMessageService } from '../Services/my-message.service';
 import { MessagesItemsComponent } from '../Components/messages-items/messages-items.component';
+import { BoolToTextPipe } from '../Pipes/bool-to-text.pipe';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MessagesItemsComponent } from '../Components/messages-items/messages-it
     CheckBoxCardComponent,
     NullMoneyPipe,
     ListBoxWithMyCardsComponent,
-    MessagesItemsComponent
+    MessagesItemsComponent,
+    BoolToTextPipe
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { MessagesItemsComponent } from '../Components/messages-items/messages-it
     FontAwesomeModule,
     NullMoneyPipe,
     ListBoxWithMyCardsComponent,
-    MessagesItemsComponent
+    MessagesItemsComponent,
+    BoolToTextPipe
   ],
   providers: [
     MessageService,

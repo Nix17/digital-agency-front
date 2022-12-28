@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { RefBookService } from '../../shared/Services/ref-book.service';
-import { RefBookDto } from '../../shared/Models/Classes/DTOs/ReferenceBook/ref-book.dto';
 import { OfferIntermediateForm } from '../../shared/Models/Classes/Forms/offer-intermediate.form';
 import { IKeyNameDescPrice } from '../../shared/Models/Interfaces/i-key-value.interface';
 import { DictionaryIdentificators } from '../../shared/Models/Enums/offer-cost.enum';

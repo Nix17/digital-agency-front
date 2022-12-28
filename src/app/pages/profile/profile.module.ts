@@ -5,6 +5,7 @@ import { SharedModule } from '../../shared/Modules/shared.module';
 import { ProfilePage } from './profile.page';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
+import { OrderExpandRowComponent } from './order-info/order-expand-row/order-expand-row.component';
 
 
 
@@ -12,7 +13,8 @@ import { OrderInfoComponent } from './order-info/order-info.component';
   declarations: [
     ProfilePage,
     ProfileInfoComponent,
-    OrderInfoComponent
+    OrderInfoComponent,
+    OrderExpandRowComponent
   ],
   imports: [
     CommonModule,
