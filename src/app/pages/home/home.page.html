@@ -1,3 +1,5 @@
+<shared-messages-items></shared-messages-items>
+
 <ng-template #loading>
   <my-progress-spinner></my-progress-spinner>
 </ng-template>
@@ -147,11 +149,11 @@
   </div>
 
   <div>
-    <div class="col">
+    <div class="col" *ngIf="(offerNum$ | async)">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
 
-          <p-card class="w-full">
+          <p-card *ngIf="!load; else loading" class="w-full">
             <p-divider align="center">
               <button
                 pButton
@@ -160,9 +162,11 @@
                 label="Получить предложение"
                 class="p-button-raised p-button-info"
                 icon="pi pi-shopping-bag"
+                (click)="onSubmit()"
               ></button>
             </p-divider>
           </p-card>
+          <!-- <pre>{{ offerNumber | json }}</pre> -->
 
         </div>
       </div>

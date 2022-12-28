@@ -1,13 +1,15 @@
 export class OfferForm {
-  offerNumber: number = 0;
-  userId: string = '';
-  cost: number = 0;
-  developmentTimelineId: number = 0;
-  siteTypeId: number = 0;
-  siteDesignId: number = 0;
-  orderDate: string = '';
-  comment: string = '';
-  siteModulesIds: number[] = [];
-  optionalDesignIds: number[] = [];
-  siteSupportIds: number[] = [];
+  constructor(
+    public offerNumber: number = 0,
+    public userId: string = '',
+    public cost: number = 0,
+    public developmentTimelineId: number = 0,
+    public siteTypeId: number = 0,
+    public siteDesignId: number = 0,
+    public orderDate: string = '',
+    public comment: string = '',
+    public siteModulesIds: number[] = [],
+    public optionalDesignIds: number[] = [],
+    public siteSupportIds: number[] = [],
+  ) {}
 }

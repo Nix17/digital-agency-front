@@ -9,9 +9,16 @@ import { KeyNameDescPriceDTO } from '../../shared/Models/Classes/DTOs/base/key-v
 import { DevTimelineService } from 'src/app/shared/Services/development-timeline/dev-timeline.service';
 import { OfferService } from '../../shared/Services/offer/offer.service';
 import { DevelopmentTimelineDTO } from '../../shared/Models/Classes/DTOs/development-timeline.dto';
+import { MyMessageService } from '../../shared/Services/my-message.service';
+import { OfferForm } from '../../shared/Models/Classes/Forms/offer.form';
+import { AuthService } from '../../shared/Services/auth/auth.service';
+import { OrderService } from '../../shared/Services/order/order.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { OrderForm } from 'src/app/shared/Models/Classes/Forms/order.form';
 
 type titles = { title: string; subTitle: string; };
 
+@UntilDestroy()
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -80,15 +87,24 @@ export class HomePage implements OnInit {
     shareReplay()
   );
 
-  selectedTimeline!: DevelopmentTimelineDTO;
+  offerNum$: Observable<number> = this._needRefresh$.pipe(
+    switchMap(() => this.srvOffer.getOfferNumber()),
+    map(data => this.offerNumber = data),
+    shareReplay()
+  );
 
+  load: boolean = false;
+  offerNumber: number = 0;
   dataForm: OfferIntermediateForm = new OfferIntermediateForm();
   totalCost: number = 0;
 
   constructor(
     private srv: RefBookService,
     private srvDevTime: DevTimelineService,
-    private srvOffer: OfferService
+    private srvOffer: OfferService,
+    private srvOrder: OrderService,
+    private srvMsg: MyMessageService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -158,5 +174,107 @@ export class HomePage implements OnInit {
 
     this.totalCost = this.recalculateCost(this.dataForm);
     this.dataForm.totalCost = this.totalCost;
+  }
+
+  private validateForm(form: OfferIntermediateForm): boolean {
+    if (form.siteType.length === 0) {
+      this.srvMsg.showError('Вы не выбрали тип сайта!');
+      return false;
+    }
+
+    if (form.siteDesign.length === 0) {
+      this.srvMsg.showError('Вы не выбрали дизайн сайта!');
+      return false;
+    }
+
+    if (form.developmentTimeline === undefined) {
+      this.srvMsg.showError('Вы не указали сроки разработки!');
+      return false;
+    }
+
+    return true;
+  }
+
+  onSubmit() {
+    if (!this.validateForm(this.dataForm)) return;
+
+    this.load = true;
+
+    let modulesIds: number[] = [];
+    this.dataForm.siteModules.forEach((item) => {
+      modulesIds.push(item.id);
+    });
+
+    let optionalIds: number[] = [];
+    this.dataForm.optionalDesign.forEach((item) => {
+      optionalIds.push(item.id);
+    });
+
+    let supportsIds: number[] = [];
+    this.dataForm.siteSupport.forEach((item) => {
+      supportsIds.push(item.id);
+    });
+
+    let sendOfferObj: OfferForm = new OfferForm(
+      this.offerNumber,
+      this.auth.userId,
+      this.dataForm.totalCost,
+      this.dataForm.developmentTimeline.id,
+      this.dataForm.siteType[0].id,
+      this.dataForm.siteDesign[0].id,
+      new Date().toISOString(),
+      this.dataForm.comment,
+      modulesIds,
+      optionalIds,
+      supportsIds
+    );
+
+    console.log(JSON.stringify(sendOfferObj));
+
+    this.srvOffer.createNew(sendOfferObj)
+    .pipe(untilDestroyed(this))
+    .subscribe(
+      (data) => {
+        this.dataForm = new OfferIntermediateForm();
+        this.load = false;
+        this._refresh$.next(false);
+        let msg: string = `${ this.auth.userName }, мы приняли Вашу заявку! Хотите ли Вы подтвердить оформление заказа?`;
+
+        const accept = () => {
+          let orderObj = new OrderForm(
+            data.message,
+            this.auth.userId,
+            (new Date()).toISOString(),
+            true
+          );
+
+          this.srvOrder.createNew(orderObj)
+          .pipe(untilDestroyed(this))
+          .subscribe(
+            () => this.srvMsg.showSuccess('Ваш заказ был оформлен'),
+            (error) => this.srvMsg.showException(error)
+          );
+        };
+
+        const reject = () => {
+          let orderObj = new OrderForm(
+            data.message,
+            this.auth.userId,
+            (new Date()).toISOString(),
+            false
+          );
+
+          this.srvOrder.createNew(orderObj)
+          .pipe(untilDestroyed(this))
+          .subscribe(
+            () => this.srvMsg.showInfo('Ваш заказ не был оформлен. Вы можете его оформить в своём профиле'),
+            (error) => this.srvMsg.showException(error)
+          );
+        };
+
+        this.srvMsg.openConfirmDialogWithReject('Подтверждение', msg, accept, reject);
+      },
+      (error) => {this.srvMsg.showException(error); this.load = false;}
+    );
   }
 }

@@ -55,4 +55,16 @@ export class MyMessageService {
     };
     this.confirmationService.confirm(obj);
   }
+
+  public openConfirmDialogWithReject(header: string, msg: string, acceptFunc: Function, rejectFunc: Function) {
+    let obj: Confirmation = {
+      message: msg,
+      icon: 'pi pi-exclamation-triangle',
+      header: header,
+      accept: acceptFunc,
+      reject: rejectFunc,
+      key: 'top'
+    };
+    this.confirmationService.confirm(obj);
+  }
 }

@@ -1,6 +1,8 @@
 export class OrderForm {
-  offerId: string = '';
-  userId: string = '';
-  orderDate: string = '';
-  agreement: boolean = false;
+  constructor(
+    public offerId: string = '',
+    public userId: string = '',
+    public orderDate: string = '',
+    public agreement: boolean = false,
+  ) {}
 }
