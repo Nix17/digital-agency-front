@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent {
 
+  year: string = ((new Date()).getFullYear()).toString();
+
   constructor(
     private router: Router
   ) {}
