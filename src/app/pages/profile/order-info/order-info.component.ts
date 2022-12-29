@@ -2,6 +2,11 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { OrderDTO } from '../../../shared/Models/Classes/DTOs/order.dto';
 import { OfferDTO } from '../../../shared/Models/Classes/DTOs/offer.dto';
 import { KeyValueDTO } from '../../../shared/Models/Classes/DTOs/base/key-value.dto';
+import { BehaviorSubject, Observable, combineLatest, map, shareReplay } from 'rxjs';
+import { OfferService } from '../../../shared/Services/offer/offer.service';
+import { OrderService } from '../../../shared/Services/order/order.service';
+import { MyMessageService } from 'src/app/shared/Services/my-message.service';
+import { AuthService } from 'src/app/shared/Services/auth/auth.service';
 
 @Component({
   selector: 'app-order-info',
@@ -12,45 +17,23 @@ export class OrderInfoComponent implements OnInit {
 
   @ViewChild('dt') table: ElementRef | undefined;
 
-  items: OrderDTO[] = [];
+  private _refresh$ = new BehaviorSubject<boolean>(false);
+  private _needRefresh$ = this._refresh$.asObservable();
+
+  orders$: Observable<OrderDTO[]> = combineLatest([this.srvOrder.getAllByUserId(this.auth.userId)]).pipe(
+    map(data => data[0]),
+    shareReplay()
+  );
+
   selectedItems: OrderDTO[] = [];
 
-  constructor() {}
+  constructor(
+    private auth: AuthService,
+    private srvMsg: MyMessageService,
+    private srvOffer: OfferService,
+    private srvOrder: OrderService
+  ) {}
 
   ngOnInit(): void {
-    let offer = new OfferDTO();
-    offer = {
-      id: '',
-      offerNumber: 0,
-      user: { id: '', value: '' },
-      cost: 0,
-      developmentTimeline: { id: 1, name: '', multiplicationFactor: 1, created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: '' },
-      siteType: { id: 1, name: '123', description: 'dddddddddddddd', price: 0, created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: '' },
-      siteDesign: { id: 1, name: '4567', description: 'dddddddddddddd', price: 0, created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: '' },
-      siteModules: [{ id: 1, name: '4567', description: 'dddddddddddddd', price: 0, created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: '' }],
-      optionalDesign: [{ id: 1, name: '4567', description: 'dddddddddddddd', price: 0, created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: '' }],
-      sitySupport: [{ id: 1, name: '4567', description: 'dddddddddddddd', price: 0, created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: '' }],
-      orderDate: '',
-      comment: 'cdcdscsdcmsdlv',
-      created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: ''
-    };
-
-    this.items.push({
-      id: '1',
-      offer: offer,
-      user: { id: '', value: '' },
-      orderDate: '',
-      agreement: false,
-      created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: ''
-    });
-
-    this.items.push({
-      id: '2',
-      offer: offer,
-      user: { id: '', value: '' },
-      orderDate: '',
-      agreement: false,
-      created: new Date(), lastModified: new Date(), createdBy: '', lastModifiedBy: ''
-    });
   }
 }
