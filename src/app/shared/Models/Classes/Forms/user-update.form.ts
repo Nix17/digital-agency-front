@@ -1,7 +1,9 @@
 export class UserUpdateForm {
-  password: string = '';
-  phone: string = '';
-  lastName: string = '';
-  firstName: string = '';
-  middleName: string = '';
+  constructor(
+    public password: string = '',
+    public phone: string = '',
+    public lastName: string = '',
+    public firstName: string = '',
+    public middleName: string = '',
+  ) {}
 }

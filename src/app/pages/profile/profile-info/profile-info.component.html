@@ -1,83 +1,101 @@
-<div class="flex align-content-center flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <span>Фамилия</span>
-  </div>
-  <div class="flex-grow-1 align-items-center justify-content-center m-2">
-    <input class="w-full" type="text" pInputText [(ngModel)]="user.lastName">
-  </div>
-</div>
+<!-- <shared-messages-items></shared-messages-items> -->
 
-<div class="flex align-content-center flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <span>Имя</span>
-  </div>
-  <div class="flex-grow-1 align-items-center justify-content-center m-2">
-    <input class="w-full" type="text" pInputText [(ngModel)]="user.firstName">
-  </div>
-</div>
+<ng-template #loading>
+  <my-progress-spinner></my-progress-spinner>
+</ng-template>
 
-<div class="flex align-content-center flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <span>Отчество</span>
+<div *ngIf="(user$ | async); else loading">
+  <div class="flex align-content-center flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <span>Фамилия</span>
+    </div>
+    <div class="flex-grow-1 align-items-center justify-content-center m-2">
+      <input class="w-full" type="text" pInputText [(ngModel)]="user.lastName">
+    </div>
   </div>
-  <div class="flex-grow-1 align-items-center justify-content-center m-2">
-    <input class="w-full" type="text" pInputText [(ngModel)]="user.middleName">
-  </div>
-</div>
 
-<div class="flex align-content-center flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <span>Роль</span>
+  <div class="flex align-content-center flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <span>Имя</span>
+    </div>
+    <div class="flex-grow-1 align-items-center justify-content-center m-2">
+      <input class="w-full" type="text" pInputText [(ngModel)]="user.firstName">
+    </div>
   </div>
-  <div class="flex-grow-1 align-items-center justify-content-center m-2">
-    <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.role">
-  </div>
-</div>
 
-<div class="flex align-content-center flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <span>Телефон</span>
+  <div class="flex align-content-center flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <span>Отчество</span>
+    </div>
+    <div class="flex-grow-1 align-items-center justify-content-center m-2">
+      <input class="w-full" type="text" pInputText [(ngModel)]="user.middleName">
+    </div>
   </div>
-  <div class="flex-grow-1 align-items-center justify-content-center m-2">
-    <input class="w-full" type="text" pInputText [(ngModel)]="user.phone">
-  </div>
-</div>
 
-<div class="flex align-content-center flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <span>Email</span>
+  <div class="flex align-content-center flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <span>Роль</span>
+    </div>
+    <div class="flex-grow-1 align-items-center justify-content-center m-2">
+      <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.role">
+    </div>
   </div>
-  <div class="flex-grow-1 align-items-center justify-content-center m-2">
-    <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.email">
-  </div>
-</div>
 
-<div class="flex align-content-center flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <span>Пароль</span>
+  <div class="flex align-content-center flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <span>Телефон</span>
+    </div>
+    <div class="flex-grow-1 align-items-center justify-content-center m-2">
+      <p-inputMask
+        id="phone"
+        name="phone"
+        type="tel"
+        mask="+7 (999) 999-99-99"
+        placeholder="+7 (999) 999-99-99"
+        [(ngModel)]="user.phone"
+        styleClass="w-full"
+      ></p-inputMask>
+    </div>
   </div>
-  <div class="flex-grow-1 align-items-center justify-content-center m-2">
-    <input class="w-full" type="text" pInputText [(ngModel)]="user.password">
-  </div>
-</div>
 
-<div class="flex align-content-center flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <span>Дата создания аккаунта</span>
+  <div class="flex align-content-center flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <span>Email</span>
+    </div>
+    <div class="flex-grow-1 align-items-center justify-content-center m-2">
+      <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.email">
+    </div>
   </div>
-  <div class="flex-grow-1 align-items-center justify-content-center m-2">
-    <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.created">
-  </div>
-</div>
 
-<div class="flex align-content-center justify-content-end flex-wrap card-container">
-  <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
-    <button
-      pButton
-      pRipple
-      type="button"
-      label="Сохранить"
-      class="p-button-raised w-full"
-    ></button>
+  <div class="flex align-content-center flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <span>Пароль</span>
+    </div>
+    <div class="flex-grow-1 align-items-center justify-content-center m-2">
+      <input class="w-full" type="text" pInputText [(ngModel)]="user.password">
+    </div>
   </div>
+
+  <div class="flex align-content-center flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <span>Дата создания аккаунта</span>
+    </div>
+    <div class="flex-grow-1 align-items-center justify-content-center m-2">
+      <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.created">
+    </div>
+  </div>
+
+  <div class="flex align-content-center justify-content-end flex-wrap card-container">
+    <div class="flex align-items-center justify-content-start font-bold w-4 m-2">
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Сохранить"
+        class="p-button-raised w-full"
+        (click)="onSubmit()"
+      ></button>
+    </div>
+  </div>
+
 </div>
