@@ -1,0 +1,89 @@
+<ng-template #loading>
+  <my-progress-spinner></my-progress-spinner>
+</ng-template>
+
+<div *ngIf="(orders$ | async) as orders; else loading" class="w-full">
+  <p-table
+    #dt
+    dataKey="id"
+    [value]="orders"
+    [(selection)]="selectedItems"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center w-8">
+          <span class="p-input-icon-left flex-grow-1">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" placeholder="Поиск" class="w-full" />
+          </span>
+          <button pButton pRipple type="button" label="Экспорт в ворд" icon="pi pi-file-word" class="p-button-raised p-button-help ml-2"></button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 5rem"></th>
+
+        <th pSortableColumn="offerNumber">
+          Номер
+          <p-sortIcon field="offerNumber"></p-sortIcon>
+        </th>
+
+        <th pSortableColumn="cost">
+          Стоимость
+          <p-sortIcon field="cost"></p-sortIcon>
+        </th>
+
+        <th pSortableColumn="orderDate">
+          Дата заказа
+          <p-sortIcon field="orderDate"></p-sortIcon>
+        </th>
+
+        <th pSortableColumn="comment">
+          Комментарий
+          <p-sortIcon field="comment"></p-sortIcon>
+        </th>
+
+        <th pSortableColumn="agreement">
+          Согласие
+          <p-sortIcon field="agreement"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item let-expanded="expanded"
+    >
+      <tr>
+        <td>
+            <button
+              type="button"
+              pButton
+              pRipple
+              [pRowToggler]="item"
+              class="p-button-text p-button-rounded p-button-plain"
+              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+            ></button>
+        </td>
+
+        <td>{{ item.offer.offerNumber }}</td>
+
+        <td>{{ item.offer.cost | currency:'RUB' }}</td>
+
+        <td>{{ item.orderDate | date:"yyyy-MM-dd" }}</td>
+
+        <td>{{ item.offer.comment }}</td>
+
+        <td>{{ item.agreement | boolToText }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="rowexpansion" let-item>
+      <tr>
+        <td colspan="7">
+          <app-order-admin-expand-row [offer]="item.offer"></app-order-admin-expand-row>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
