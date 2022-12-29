@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, shareReplay, tap } from 'rxjs';
 import { OrderDTO } from 'src/app/shared/Models/Classes/DTOs/order.dto';
 import { AuthService } from 'src/app/shared/Services/auth/auth.service';
 import { MyMessageService } from 'src/app/shared/Services/my-message.service';
@@ -20,6 +20,7 @@ export class OrderInfoAdminComponent implements OnInit {
 
   orders$: Observable<OrderDTO[]> = combineLatest([this.srvOrder.getAll(), this._needRefresh$]).pipe(
     map(data => data[0]),
+    tap(d => console.log(d)),
     shareReplay()
   );
 

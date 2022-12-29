@@ -30,6 +30,11 @@
           <p-sortIcon field="offerNumber"></p-sortIcon>
         </th>
 
+        <th pSortableColumn="user">
+          Клиент
+          <p-sortIcon field="user"></p-sortIcon>
+        </th>
+
         <th pSortableColumn="cost">
           Стоимость
           <p-sortIcon field="cost"></p-sortIcon>
@@ -67,6 +72,8 @@
         </td>
 
         <td>{{ item.offer.offerNumber }}</td>
+
+        <td>{{ item.user.value }}</td>
 
         <td>{{ item.offer.cost | currency:'RUB' }}</td>
 
