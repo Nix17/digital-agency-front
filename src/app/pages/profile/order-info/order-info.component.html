@@ -2,7 +2,7 @@
   <my-progress-spinner></my-progress-spinner>
 </ng-template>
 
-<div *ngIf="(orders$ | async) as orders" class="w-full">
+<div *ngIf="(orders$ | async) as orders; else loading" class="w-full">
   <p-table
     #dt
     dataKey="id"
@@ -12,10 +12,11 @@
     <ng-template pTemplate="caption">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
-          <span class="p-input-icon-left w-full">
+          <span class="p-input-icon-left flex-grow-1">
             <i class="pi pi-search"></i>
             <input pInputText type="text" placeholder="Поиск" class="w-full" />
           </span>
+          <button pButton pRipple type="button" label="Экспорт в ворд" icon="pi pi-file-word" class="p-button-raised p-button-help ml-2"></button>
         </div>
       </div>
     </ng-template>
