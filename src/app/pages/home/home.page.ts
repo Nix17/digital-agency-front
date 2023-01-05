@@ -15,6 +15,7 @@ import { AuthService } from '../../shared/Services/auth/auth.service';
 import { OrderService } from '../../shared/Services/order/order.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { OrderForm } from 'src/app/shared/Models/Classes/Forms/order.form';
+import { Router } from '@angular/router';
 
 type titles = { title: string; subTitle: string; };
 
@@ -98,13 +99,16 @@ export class HomePage implements OnInit {
   dataForm: OfferIntermediateForm = new OfferIntermediateForm();
   totalCost: number = 0;
 
+  orderCost: number = 0;
+
   constructor(
     private srv: RefBookService,
     private srvDevTime: DevTimelineService,
     private srvOffer: OfferService,
     private srvOrder: OrderService,
     private srvMsg: MyMessageService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -192,6 +196,8 @@ export class HomePage implements OnInit {
       return false;
     }
 
+    this.orderCost = form.totalCost;
+
     return true;
   }
 
@@ -244,6 +250,7 @@ export class HomePage implements OnInit {
           let orderObj = new OrderForm(
             data.message,
             this.auth.userId,
+            this.totalCost,
             (new Date()).toISOString(),
             true
           );
@@ -251,7 +258,13 @@ export class HomePage implements OnInit {
           this.srvOrder.createNew(orderObj)
           .pipe(untilDestroyed(this))
           .subscribe(
-            () => this.srvMsg.showSuccess('Ваш заказ был оформлен'),
+            () => {
+              this.srvMsg.showSuccess('Ваш заказ был оформлен');
+              // this.router.navigate(['/']);
+              setTimeout(() => {
+                this.router.navigate(['/', 'profile'])
+              }, 1000);
+            },
             (error) => this.srvMsg.showException(error)
           );
         };
@@ -260,6 +273,7 @@ export class HomePage implements OnInit {
           let orderObj = new OrderForm(
             data.message,
             this.auth.userId,
+            this.totalCost,
             (new Date()).toISOString(),
             false
           );
@@ -267,7 +281,14 @@ export class HomePage implements OnInit {
           this.srvOrder.createNew(orderObj)
           .pipe(untilDestroyed(this))
           .subscribe(
-            () => this.srvMsg.showInfo('Ваш заказ не был оформлен. Вы можете его оформить в своём профиле'),
+            () => {
+              this.srvMsg.showInfo('Ваш заказ не был оформлен. Вы можете его оформить в своём профиле');
+              // this.router.navigate(['/']);
+              setTimeout(() => {
+                // window.location.reload();
+                this.router.navigate(['/', 'profile'])
+              }, 1000);
+            },
             (error) => this.srvMsg.showException(error)
           );
         };
