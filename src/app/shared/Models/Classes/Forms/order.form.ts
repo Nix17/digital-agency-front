@@ -7,3 +7,7 @@ export class OrderForm {
     public agreement: boolean = false,
   ) {}
 }
+
+export class OrderFormUpd {
+  constructor(public orderCost: number = 1) {}
+}

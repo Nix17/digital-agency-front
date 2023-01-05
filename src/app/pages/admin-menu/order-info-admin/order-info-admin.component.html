@@ -1,3 +1,5 @@
+<shared-messages-items></shared-messages-items>
+
 <ng-template #loading>
   <my-progress-spinner></my-progress-spinner>
 </ng-template>
@@ -88,7 +90,7 @@
     <ng-template pTemplate="rowexpansion" let-item>
       <tr>
         <td colspan="7">
-          <app-order-admin-expand-row [offer]="item.offer"></app-order-admin-expand-row>
+          <app-order-admin-expand-row [offer]="item.offer" [orderCost]="item.orderCost" [orderId]="item.id"></app-order-admin-expand-row>
         </td>
       </tr>
     </ng-template>

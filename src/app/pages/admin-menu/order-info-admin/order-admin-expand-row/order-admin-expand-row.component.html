@@ -1,4 +1,53 @@
 <div class="w-full">
+
+  <p-card header="Цена заказа">
+
+    <div [ngSwitch]="isEdit">
+      <ng-template [ngSwitchCase]="false">
+        <div class="card-container blue-container overflow-hidden">
+          <div class="flex">
+            <div class="flex-initial flex align-items-center justify-content-center">
+              {{ orderCost | currency:'RUB: ' }}
+            </div>
+            <div class="flex-initial flex align-items-center justify-content-center ml-3">
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-warning"
+                (click)="isEdit = true;"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template [ngSwitchCase]="true">
+        <div class="card-container blue-container overflow-hidden">
+          <div class="flex">
+            <div class="flex-initial flex align-items-center justify-content-center">
+              <label for="orderCost" class="mr-2">Новая цена заказа</label>
+              <input id="orderCost" [(ngModel)]="orderCost" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+            <div class="flex-initial flex align-items-center justify-content-center ml-3">
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-check"
+                class="p-button-rounded p-button"
+                (click)="onUpdateOrderCost()"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+
+  </p-card>
+  <p-divider></p-divider>
+
   <p-panel [header]="'Тип сайта: ' + offer.siteType.name">
     <p><b>Описание</b></p>
     <div>{{ offer.siteType.description }}</div>

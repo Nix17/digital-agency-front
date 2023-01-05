@@ -285,7 +285,6 @@ export class HomePage implements OnInit {
               this.srvMsg.showInfo('Ваш заказ не был оформлен. Вы можете его оформить в своём профиле');
               // this.router.navigate(['/']);
               setTimeout(() => {
-                // window.location.reload();
                 this.router.navigate(['/', 'profile'])
               }, 1000);
             },

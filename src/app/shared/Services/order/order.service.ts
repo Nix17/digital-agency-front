@@ -4,7 +4,7 @@ import { map, Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { OrderDTO } from '../../Models/Classes/DTOs/order.dto';
 import { IResponse } from '../../Models/Interfaces/base/base.response';
-import { OrderForm } from '../../Models/Classes/Forms/order.form';
+import { OrderForm, OrderFormUpd } from '../../Models/Classes/Forms/order.form';
 import { MessageResponse } from '../../Models/Interfaces/base/message-response';
 
 @Injectable({
@@ -42,6 +42,13 @@ export class OrderService {
 
   public update(id: string, form: OrderForm): Observable<MessageResponse> {
     return this.http.put<IResponse<MessageResponse>>(`${ this.api }${ this.url }/${ id }`, form).pipe(
+      map(response => response.data),
+      shareReplay()
+    );
+  }
+
+  public updateOrderCost(id: string, form: OrderFormUpd): Observable<MessageResponse> {
+    return this.http.put<IResponse<MessageResponse>>(`${ this.api }${ this.url }/${ id }/order-cost`, form).pipe(
       map(response => response.data),
       shareReplay()
     );
