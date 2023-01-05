@@ -5,7 +5,10 @@ import { AuthService } from 'src/app/shared/Services/auth/auth.service';
 import { MyMessageService } from 'src/app/shared/Services/my-message.service';
 import { OfferService } from 'src/app/shared/Services/offer/offer.service';
 import { OrderService } from 'src/app/shared/Services/order/order.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { saveAs } from 'file-saver';
 
+@UntilDestroy()
 @Component({
   selector: 'app-order-info-admin',
   templateUrl: './order-info-admin.component.html',
@@ -36,4 +39,14 @@ export class OrderInfoAdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onExport() {
+    this.srvOrder.exportDataToWord().pipe(
+      untilDestroyed(this),
+      tap((response) => {
+        const file = new Blob([response.body] as BlobPart[], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+        saveAs(file, 'Orders.docx');
+      })
+    ).subscribe();
+  }
 }
+

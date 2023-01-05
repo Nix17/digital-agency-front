@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, shareReplay } from 'rxjs';
+import { catchError, EMPTY, map, Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { OrderDTO } from '../../Models/Classes/DTOs/order.dto';
 import { IResponse } from '../../Models/Interfaces/base/base.response';
@@ -14,6 +14,8 @@ export class OrderService {
 
   private readonly api = environment.apiUrl;
   private readonly url = 'Order';
+
+  private readonly word = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
   constructor(
     private http: HttpClient
@@ -64,6 +66,27 @@ export class OrderService {
   public deleteSelected(form: string[]): Observable<MessageResponse> {
     return this.http.post<IResponse<MessageResponse>>(`${ this.api }${ this.url }/delete`, form).pipe(
       map(response => response.data),
+      shareReplay()
+    );
+  }
+
+  public exportDataToWord() {
+    let hdrs = new HttpHeaders();
+    hdrs = hdrs.set('Accept', this.word);
+
+    return this.http.get(
+      `${ this.api }${ this.url }/export-word`,
+      {
+        observe: 'response',
+        headers: hdrs,
+        responseType: 'blob'
+      }
+    ).pipe(
+      catchError(err => {
+        console.log('WORD ERROR:');
+        console.log(err);
+        return EMPTY;
+      }),
       shareReplay()
     );
   }
