@@ -30,6 +30,11 @@
           <p-sortIcon field="offerNumber"></p-sortIcon>
         </th>
 
+        <th pSortableColumn="user">
+          Клиент
+          <p-sortIcon field="user"></p-sortIcon>
+        </th>
+
         <th pSortableColumn="cost">
           Стоимость
           <p-sortIcon field="cost"></p-sortIcon>
@@ -68,6 +73,8 @@
 
         <td>{{ item.offer.offerNumber }}</td>
 
+        <td>{{ item.user.value }}</td>
+
         <td>{{ item.offer.cost | currency:'RUB' }}</td>
 
         <td>{{ item.orderDate | date:"yyyy-MM-dd" }}</td>
@@ -81,7 +88,7 @@
     <ng-template pTemplate="rowexpansion" let-item>
       <tr>
         <td colspan="7">
-          <app-order-expand-row [offer]="item.offer"></app-order-expand-row>
+          <app-order-admin-expand-row [offer]="item.offer"></app-order-admin-expand-row>
         </td>
       </tr>
     </ng-template>

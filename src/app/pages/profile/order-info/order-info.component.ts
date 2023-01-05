@@ -20,7 +20,7 @@ export class OrderInfoComponent implements OnInit {
   private _refresh$ = new BehaviorSubject<boolean>(false);
   private _needRefresh$ = this._refresh$.asObservable();
 
-  orders$: Observable<OrderDTO[]> = combineLatest([this.srvOrder.getAllByUserId(this.auth.userId)]).pipe(
+  orders$: Observable<OrderDTO[]> = combineLatest([this.srvOrder.getAllByUserId(this.auth.userId), this._needRefresh$]).pipe(
     map(data => data[0]),
     shareReplay()
   );

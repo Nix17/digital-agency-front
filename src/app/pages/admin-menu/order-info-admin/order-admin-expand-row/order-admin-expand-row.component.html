@@ -1,0 +1,90 @@
+<div class="w-full">
+  <p-panel [header]="'Тип сайта: ' + offer.siteType.name">
+    <p><b>Описание</b></p>
+    <div>{{ offer.siteType.description }}</div>
+    <div>Цена: {{ offer.siteType.price }} RUB</div>
+  </p-panel>
+
+  <p-divider></p-divider>
+
+  <p-table
+    #dt
+    dataKey="id"
+    [value]="offer.siteModules"
+    [rowHover]="true"
+  >
+    <ng-template pTemplate="caption">Модули</ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <td>Название</td>
+        <td>Описание</td>
+        <td>Цена, RUB</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-divider></p-divider>
+
+  <p-panel [header]="'Дизайн: ' + offer.siteDesign.name">
+    <p><b>Описание</b></p>
+    <div>{{ offer.siteDesign.description }}</div>
+    <div>Цена: {{ offer.siteDesign.price }} RUB</div>
+  </p-panel>
+
+  <p-divider></p-divider>
+
+  <p-table
+    #dt
+    dataKey="id"
+    [value]="offer.optionalDesign"
+    [rowHover]="true"
+  >
+    <ng-template pTemplate="caption">Дополнительно</ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <td>Название</td>
+        <td>Описание</td>
+        <td>Цена, RUB</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-divider></p-divider>
+
+  <p-table
+    #dt
+    dataKey="id"
+    [value]="offer.sitySupport"
+    [rowHover]="true"
+  >
+    <ng-template pTemplate="caption">Поддержка сайта</ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <td>Название</td>
+        <td>Описание</td>
+        <td>Цена, RUB</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
