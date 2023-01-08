@@ -9,24 +9,39 @@
       <div class="flex align-items-center justify-content-center w-8">
         <p-card class="w-full">
 
-          <p-tabView>
-            <p-tabPanel
-              leftIcon="pi pi-id-card"
-              header="Личная информация"
-              [selected]="true"
-            >
-              <app-profile-info
-              ></app-profile-info>
-            </p-tabPanel>
-            <p-tabPanel
-              leftIcon="pi pi-book"
-              header="Мои заказы"
-              [selected]="false"
-            >
-              <app-order-info
-              ></app-order-info>
-            </p-tabPanel>
-          </p-tabView>
+          <div class="flex">
+            <div class="flex-initial flex align-items-center justify-content-center m-1">
+              <a
+                pButton
+                pRipple
+                type="button"
+                label="Личная информация"
+                icon="pi pi-id-card"
+                class="a-not-underline p-button-outlined p-button-info"
+                [routerLink]="['/', 'profile']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact : true}"
+              ></a>
+            </div>
+            <div class="flex-initial flex align-items-center justify-content-center m-1">
+              <a
+                pButton
+                pRipple
+                type="button"
+                class="a-not-underline p-button-outlined p-button-info"
+                [routerLink]="['/', 'profile', 'orders']"
+                label="Мои заказы"
+                icon="pi pi-book"
+                routerLinkActive="active"
+              ></a>
+            </div>
+          </div>
+
+
+
+          <p-divider></p-divider>
+
+          <router-outlet></router-outlet>
 
         </p-card>
       </div>

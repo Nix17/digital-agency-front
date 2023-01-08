@@ -35,7 +35,8 @@
       <span>Роль</span>
     </div>
     <div class="flex-grow-1 align-items-center justify-content-center m-2">
-      <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.role">
+      <!-- <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.role"> -->
+      <label class="w-full" [innerText]="user.role"></label>
     </div>
   </div>
 
@@ -61,7 +62,8 @@
       <span>Email</span>
     </div>
     <div class="flex-grow-1 align-items-center justify-content-center m-2">
-      <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.email">
+      <!-- <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.email"> -->
+      <label class="w-full" [innerText]="user.email"></label>
     </div>
   </div>
 
@@ -79,7 +81,8 @@
       <span>Дата создания аккаунта</span>
     </div>
     <div class="flex-grow-1 align-items-center justify-content-center m-2">
-      <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.created">
+      <!-- <input [disabled]="true" class="w-full" type="text" pInputText [(ngModel)]="user.created"> -->
+      <label class="w-full">{{ user.created | date: "yyyy-MM-dd HH:mm" }}</label>
     </div>
   </div>
 
