@@ -49,6 +49,8 @@
           Согласие
           <p-sortIcon field="agreement"></p-sortIcon>
         </th>
+
+        <th class="w-1"></th>
       </tr>
     </ng-template>
 
@@ -68,13 +70,35 @@
 
         <td>{{ item.offer.offerNumber }}</td>
 
-        <td>{{ item.offer.cost | currency:'RUB' }}</td>
+        <td>{{ item.offer.cost | currency:'RUB: ' }}</td>
 
         <td>{{ item.orderDate | date:"yyyy-MM-dd" }}</td>
 
         <td>{{ item.offer.comment }}</td>
 
         <td>{{ item.agreement | boolToText }}</td>
+
+        <td>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-check"
+            class="p-button-rounded p-button-success"
+            *ngIf="!item.agreement"
+            (click)="onChangeAgreement(item)"
+          ></button>
+
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-times"
+            class="p-button-rounded p-button-danger"
+            *ngIf="item.agreement"
+            (click)="onChangeAgreement(item)"
+          ></button>
+        </td>
       </tr>
     </ng-template>
 
