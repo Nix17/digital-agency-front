@@ -1,5 +1,7 @@
-export interface DictionaryForm {
-  name: string;
-  description: string;
-  price: number;
+export class DictionaryForm {
+  constructor(
+    public name: string,
+    public description: string,
+    public price: number,
+  ) {}
 }

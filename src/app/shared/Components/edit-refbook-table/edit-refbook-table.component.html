@@ -10,24 +10,24 @@
 
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 5rem"></th>
+        <th style="width: 5%"></th>
 
-        <th pSortableColumn="id">
+        <th pSortableColumn="id" style="width: 5%">
           Номер
           <p-sortIcon field="id"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="name">
+        <th pSortableColumn="name" style="width: 15%">
           Название
           <p-sortIcon field="name"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="price">
+        <th pSortableColumn="price" style="width: 15%">
           Цена
           <p-sortIcon field="price"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="description">
+        <th pSortableColumn="description" style="width: 60%">
           Описание
           <p-sortIcon field="description"></p-sortIcon>
         </th>
@@ -37,7 +37,7 @@
 
     <ng-template pTemplate="body" let-item let-expanded="expanded">
       <tr>
-        <td>
+        <td style="width: 5%">
           <button
             type="button"
             pButton
@@ -48,13 +48,13 @@
           ></button>
         </td>
 
-        <td>{{ item.id }}</td>
+        <td style="width: 5%">{{ item.id }}</td>
 
-        <td>{{ item.name }}</td>
+        <td style="width: 15%">{{ item.name }}</td>
 
-        <td>{{ item.price | currency : "RUB: " }}</td>
+        <td style="width: 15%">{{ item.price | currency : "RUB: " }}</td>
 
-        <td>{{ item.description }}</td>
+        <td style="width: 60%">{{ item.description }}</td>
       </tr>
     </ng-template>
 
@@ -84,6 +84,7 @@
             <input
               type="text"
               [(ngModel)]="item.price"
+              (keypress)="inputEvent($event)"
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             >
           </div>
@@ -95,6 +96,7 @@
               type="button"
               label="Сохранить"
               class="p-button-raised p-button-success"
+              (click)="onUpdate(item)"
             ></button>
           </div>
 
