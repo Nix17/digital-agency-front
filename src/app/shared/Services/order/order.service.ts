@@ -28,6 +28,13 @@ export class OrderService {
     );
   }
 
+  public getAllByAgreement(agree: boolean): Observable<OrderDTO[]> {
+    return this.http.post<IResponse<OrderDTO[]>>(`${ this.api }${ this.url }/agreement`, agree).pipe(
+      map(response => response.data),
+      shareReplay()
+    );
+  }
+
   public getSingle(id: string): Observable<OrderDTO> {
     return this.http.get<IResponse<OrderDTO>>(`${ this.api }${ this.url }/${ id }`).pipe(
       map(response => response.data),

@@ -22,7 +22,7 @@ export class AdminAllOrdersTableComponent implements OnInit {
 
   orders$: Observable<OrderDTO[]> = combineLatest([this.srvOrder.getAll(), this._needRefresh$]).pipe(
     map(data => data[0]),
-    tap(d => console.log(d)),
+    // tap(d => console.log(d)),
     shareReplay()
   );
 
