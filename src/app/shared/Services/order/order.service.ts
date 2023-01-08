@@ -90,4 +90,25 @@ export class OrderService {
       shareReplay()
     );
   }
+
+  public exportDataToWordByUserId(userId: string) {
+    let hdrs = new HttpHeaders();
+    hdrs = hdrs.set('Accept', this.word);
+
+    return this.http.get(
+      `${ this.api }${ this.url }/${ userId }/export-word`,
+      {
+        observe: 'response',
+        headers: hdrs,
+        responseType: 'blob'
+      }
+    ).pipe(
+      catchError(err => {
+        console.log('WORD ERROR:');
+        console.log(err);
+        return EMPTY;
+      }),
+      shareReplay()
+    );
+  }
 }
