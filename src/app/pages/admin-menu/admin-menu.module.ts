@@ -18,7 +18,7 @@ import { OrdersNotAgreeComponent } from './orders-not-agree/orders-not-agree.com
     AdminAllOrdersTableComponent,
     EditRefBookComponent,
     OrdersAgreeComponent,
-    OrdersNotAgreeComponent
+    OrdersNotAgreeComponent,
   ],
   imports: [
     CommonModule,

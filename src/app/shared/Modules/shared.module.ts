@@ -13,6 +13,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { MyMessageService } from '../Services/my-message.service';
 import { MessagesItemsComponent } from '../Components/messages-items/messages-items.component';
 import { BoolToTextPipe } from '../Pipes/bool-to-text.pipe';
+import { EditRefbookTableComponent } from '../Components/edit-refbook-table/edit-refbook-table.component';
+import { EditRefBookSpaceComponent } from '../Components/edit-refbook-table/edit-ref-book-space/edit-ref-book-space.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { BoolToTextPipe } from '../Pipes/bool-to-text.pipe';
     NullMoneyPipe,
     ListBoxWithMyCardsComponent,
     MessagesItemsComponent,
-    BoolToTextPipe
+    BoolToTextPipe,
+    EditRefbookTableComponent,
+    EditRefBookSpaceComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,9 @@ import { BoolToTextPipe } from '../Pipes/bool-to-text.pipe';
     NullMoneyPipe,
     ListBoxWithMyCardsComponent,
     MessagesItemsComponent,
-    BoolToTextPipe
+    BoolToTextPipe,
+    EditRefbookTableComponent,
+    EditRefBookSpaceComponent
   ],
   providers: [
     MessageService,

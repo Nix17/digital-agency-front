@@ -1,1 +1,51 @@
-<p>edit-ref-book works!</p>
+<shared-messages-items></shared-messages-items>
+
+<ng-template #loading>
+  <my-progress-spinner></my-progress-spinner>
+</ng-template>
+
+<p-accordion>
+  <app-edit-refbook-table
+    [title]="'ТИП САЙТА'"
+    *ngIf="(siteTypes$ | async) as siteTypes; else loading"
+    [dictId]="siteType"
+    [items]="siteTypes"
+    (ChangesUpdate)="onUpdateDataToClient($event)"
+  ></app-edit-refbook-table>
+  <p-divider></p-divider>
+
+  <app-edit-refbook-table
+    [title]="'ВЫБОР МОДУЛЕЙ'"
+    *ngIf="(siteModules$ | async) as siteModules; else loading"
+    [dictId]="modules"
+    [items]="siteModules"
+    (ChangesUpdate)="onUpdateDataToClient($event)"
+  ></app-edit-refbook-table>
+  <p-divider></p-divider>
+
+  <app-edit-refbook-table
+    [title]="'ДИЗАЙН САЙТА'"
+    *ngIf="(siteDesigns$ | async) as siteDesigns; else loading"
+    [dictId]="design"
+    [items]="siteDesigns"
+    (ChangesUpdate)="onUpdateDataToClient($event)"
+  ></app-edit-refbook-table>
+  <p-divider></p-divider>
+
+  <app-edit-refbook-table
+    [title]="'Дополнительный дизайн'"
+    *ngIf="(optionalDesigns$ | async) as optionalDesigns; else loading"
+    [dictId]="optDesign"
+    [items]="optionalDesigns"
+    (ChangesUpdate)="onUpdateDataToClient($event)"
+  ></app-edit-refbook-table>
+  <p-divider></p-divider>
+
+  <app-edit-refbook-table
+    [title]="'ПОДДЕРЖКА САЙТА'"
+    *ngIf="(siteSupports$ | async) as siteSupports; else loading"
+    [dictId]="support"
+    [items]="siteSupports"
+    (ChangesUpdate)="onUpdateDataToClient($event)"
+  ></app-edit-refbook-table>
+</p-accordion>
