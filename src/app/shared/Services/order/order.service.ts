@@ -6,6 +6,7 @@ import { OrderDTO } from '../../Models/Classes/DTOs/order.dto';
 import { IResponse } from '../../Models/Interfaces/base/base.response';
 import { OrderForm, OrderFormUpd } from '../../Models/Classes/Forms/order.form';
 import { MessageResponse } from '../../Models/Interfaces/base/message-response';
+import { OrderListIdAgreementForm } from '../../Models/Classes/Forms/export-data-agreement-date.form';
 
 @Injectable({
   providedIn: 'root'
@@ -104,6 +105,28 @@ export class OrderService {
 
     return this.http.get(
       `${ this.api }${ this.url }/${ userId }/export-word`,
+      {
+        observe: 'response',
+        headers: hdrs,
+        responseType: 'blob'
+      }
+    ).pipe(
+      catchError(err => {
+        console.log('WORD ERROR:');
+        console.log(err);
+        return EMPTY;
+      }),
+      shareReplay()
+    );
+  }
+
+  public exportDataToWordByDate(form: OrderListIdAgreementForm) {
+    let hdrs = new HttpHeaders();
+    hdrs = hdrs.set('Accept', this.word);
+
+    return this.http.post(
+      `${ this.api }${ this.url }/export-word/date`,
+      form,
       {
         observe: 'response',
         headers: hdrs,

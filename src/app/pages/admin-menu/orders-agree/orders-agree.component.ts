@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/shared/Services/auth/auth.service';
 import { MyMessageService } from 'src/app/shared/Services/my-message.service';
 import { OfferService } from 'src/app/shared/Services/offer/offer.service';
 import { OrderService } from 'src/app/shared/Services/order/order.service';
-import { ExportDataAgreementDate } from '../../../shared/Models/Classes/Forms/export-data-agreement-date.form';
+import { ExportDataAgreementDate, OrderListIdAgreementForm } from '../../../shared/Models/Classes/Forms/export-data-agreement-date.form';
 import { DATE_TOOLS } from '../../../shared/Helpers/date.helper';
 
 @UntilDestroy()
@@ -48,13 +48,20 @@ export class OrdersAgreeComponent implements OnInit {
   }
 
   onExport() {
-    // this.srvOrder.exportDataToWord().pipe(
-    //   untilDestroyed(this),
-    //   tap((response) => {
-    //     const file = new Blob([response.body] as BlobPart[], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
-    //     saveAs(file, 'OrdersAgree.docx');
-    //   })
-    // ).subscribe();
+
+    let ids: string[] = [];
+
+    this.valueToTable.forEach(item => ids.push(item.id));
+
+    const form: OrderListIdAgreementForm = new OrderListIdAgreementForm(ids, true);
+
+    this.srvOrder.exportDataToWordByDate(form).pipe(
+      untilDestroyed(this),
+      tap((response) => {
+        const file = new Blob([response.body] as BlobPart[], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+        saveAs(file, 'OrdersAgree.docx');
+      })
+    ).subscribe();
   }
 
   private isCorrectLength(date: string): boolean {

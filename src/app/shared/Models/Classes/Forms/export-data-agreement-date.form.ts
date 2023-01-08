@@ -5,3 +5,10 @@ export class ExportDataAgreementDate {
     public endDate: string
   ) {}
 }
+
+export class OrderListIdAgreementForm {
+  constructor(
+    public ids: string[],
+    public agreement: boolean,
+  ) {}
+}

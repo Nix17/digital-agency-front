@@ -1,13 +1,16 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import * as saveAs from 'file-saver';
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay, tap } from 'rxjs';
 import { DATE_TOOLS } from 'src/app/shared/Helpers/date.helper';
 import { OrderDTO } from 'src/app/shared/Models/Classes/DTOs/order.dto';
-import { ExportDataAgreementDate } from 'src/app/shared/Models/Classes/Forms/export-data-agreement-date.form';
+import { ExportDataAgreementDate, OrderListIdAgreementForm } from 'src/app/shared/Models/Classes/Forms/export-data-agreement-date.form';
 import { AuthService } from 'src/app/shared/Services/auth/auth.service';
 import { MyMessageService } from 'src/app/shared/Services/my-message.service';
 import { OfferService } from 'src/app/shared/Services/offer/offer.service';
 import { OrderService } from 'src/app/shared/Services/order/order.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-orders-not-agree',
   templateUrl: './orders-not-agree.component.html',
@@ -45,13 +48,19 @@ export class OrdersNotAgreeComponent implements OnInit {
   }
 
   onExport() {
-    // this.srvOrder.exportDataToWord().pipe(
-    //   untilDestroyed(this),
-    //   tap((response) => {
-    //     const file = new Blob([response.body] as BlobPart[], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
-    //     saveAs(file, 'OrdersAgree.docx');
-    //   })
-    // ).subscribe();
+    let ids: string[] = [];
+
+    this.valueToTable.forEach(item => ids.push(item.id));
+
+    const form: OrderListIdAgreementForm = new OrderListIdAgreementForm(ids, true);
+
+    this.srvOrder.exportDataToWordByDate(form).pipe(
+      untilDestroyed(this),
+      tap((response) => {
+        const file = new Blob([response.body] as BlobPart[], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+        saveAs(file, 'OrdersNotAgree.docx');
+      })
+    ).subscribe();
   }
 
   private isCorrectLength(date: string): boolean {
