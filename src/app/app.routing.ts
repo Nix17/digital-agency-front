@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: 'admin-menu',
     loadChildren: () => import('./pages/admin-menu/admin-menu.module').then(m => m.AdminMenuModule),
-    pathMatch: 'full',
+    // pathMatch: 'full',
     canActivate: [AuthGuard]
   },
   {

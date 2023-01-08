@@ -1,21 +1,20 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import * as saveAs from 'file-saver';
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay, tap } from 'rxjs';
 import { OrderDTO } from 'src/app/shared/Models/Classes/DTOs/order.dto';
 import { AuthService } from 'src/app/shared/Services/auth/auth.service';
 import { MyMessageService } from 'src/app/shared/Services/my-message.service';
 import { OfferService } from 'src/app/shared/Services/offer/offer.service';
 import { OrderService } from 'src/app/shared/Services/order/order.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { saveAs } from 'file-saver';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-order-info-admin',
-  templateUrl: './order-info-admin.component.html',
-  styleUrls: ['./order-info-admin.component.scss']
+  selector: 'app-admin-all-orders-table',
+  templateUrl: './admin-all-orders-table.component.html',
+  styleUrls: ['./admin-all-orders-table.component.scss']
 })
-export class OrderInfoAdminComponent implements OnInit {
-
+export class AdminAllOrdersTableComponent implements OnInit {
   @ViewChild('dt') table: ElementRef | undefined;
 
   private _refresh$ = new BehaviorSubject<boolean>(false);
@@ -51,4 +50,3 @@ export class OrderInfoAdminComponent implements OnInit {
     ).subscribe();
   }
 }
-

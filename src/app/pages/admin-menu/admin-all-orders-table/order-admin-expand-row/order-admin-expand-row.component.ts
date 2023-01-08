@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { OfferDTO } from 'src/app/shared/Models/Classes/DTOs/offer.dto';
-import { MyMessageService } from '../../../../shared/Services/my-message.service';
-import { OrderService } from '../../../../shared/Services/order/order.service';
-import { OrderFormUpd } from '../../../../shared/Models/Classes/Forms/order.form';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { MyMessageService } from 'src/app/shared/Services/my-message.service';
+import { OrderService } from 'src/app/shared/Services/order/order.service';
+import { OrderFormUpd } from 'src/app/shared/Models/Classes/Forms/order.form';
 
 @UntilDestroy()
 @Component({

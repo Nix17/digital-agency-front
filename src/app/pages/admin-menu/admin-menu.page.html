@@ -1,1 +1,75 @@
-<app-order-info-admin></app-order-info-admin>
+<shared-messages-items></shared-messages-items>
+<ng-template #loading>
+  <my-progress-spinner></my-progress-spinner>
+</ng-template>
+
+<div class="grid">
+  <div class="col">
+    <div class="flex justify-content-center flex-wrap card-container">
+      <div class="flex align-items-center justify-content-center w-full">
+        <p-card class="w-full">
+
+          <div class="flex">
+            <div class="flex-initial flex align-items-center justify-content-center m-1">
+              <a
+                pButton
+                pRipple
+                type="button"
+                label="Все заказы"
+                icon="pi pi-id-card"
+                class="a-not-underline p-button-outlined p-button-info"
+                [routerLink]="['/', 'admin-menu']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact : true}"
+              ></a>
+            </div>
+            <div class="flex-initial flex align-items-center justify-content-center m-1">
+              <a
+                pButton
+                pRipple
+                type="button"
+                class="a-not-underline p-button-outlined p-button-info"
+                [routerLink]="['/', 'admin-menu', 'refbook', 'edit']"
+                label="Редактировать справочники"
+                icon="pi pi-book"
+                routerLinkActive="active"
+              ></a>
+            </div>
+
+            <div class="flex-initial flex align-items-center justify-content-center m-1">
+              <a
+                pButton
+                pRipple
+                type="button"
+                class="a-not-underline p-button-outlined p-button-info"
+                [routerLink]="['/', 'admin-menu', 'orders', 'agree']"
+                label="Отчёт о заказах за период"
+                icon="pi pi-book"
+                routerLinkActive="active"
+              ></a>
+            </div>
+
+            <div class="flex-initial flex align-items-center justify-content-center m-1">
+              <a
+                pButton
+                pRipple
+                type="button"
+                class="a-not-underline p-button-outlined p-button-info"
+                [routerLink]="['/', 'admin-menu', 'orders', 'not-agree']"
+                label="Отчёт об отказах за период"
+                icon="pi pi-book"
+                routerLinkActive="active"
+              ></a>
+            </div>
+          </div>
+
+          <p-divider></p-divider>
+
+          <router-outlet></router-outlet>
+
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+
