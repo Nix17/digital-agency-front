@@ -8,13 +8,21 @@
     dataKey="id"
     [value]="orders"
     [(selection)]="selectedItems"
+    [globalFilterFields]="['offer.offerNumber', 'offer.cost', 'orderDate', 'offer.comment']"
   >
     <ng-template pTemplate="caption">
       <div class="flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center w-8">
           <span class="p-input-icon-left flex-grow-1">
             <i class="pi pi-search"></i>
-            <input pInputText type="text" placeholder="Поиск" class="w-full" />
+            <input
+              pInputText
+              type="text"
+              placeholder="Поиск"
+              class="w-full"
+              [(ngModel)]="searchString"
+              (input)="dt.filterGlobal(searchString, 'contains')"
+            />
           </span>
 
           <button
@@ -34,14 +42,14 @@
       <tr>
         <th style="width: 5rem"></th>
 
-        <th pSortableColumn="offerNumber">
+        <th pSortableColumn="offer.offerNumber">
           Номер
-          <p-sortIcon field="offerNumber"></p-sortIcon>
+          <p-sortIcon field="offer.offerNumber"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="cost">
+        <th pSortableColumn="offer.cost">
           Стоимость
-          <p-sortIcon field="cost"></p-sortIcon>
+          <p-sortIcon field="offer.cost"></p-sortIcon>
         </th>
 
         <th pSortableColumn="orderDate">
@@ -49,9 +57,9 @@
           <p-sortIcon field="orderDate"></p-sortIcon>
         </th>
 
-        <th pSortableColumn="comment">
+        <th pSortableColumn="offer.comment">
           Комментарий
-          <p-sortIcon field="comment"></p-sortIcon>
+          <p-sortIcon field="offer.comment"></p-sortIcon>
         </th>
 
         <th pSortableColumn="agreement">

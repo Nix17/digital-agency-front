@@ -32,6 +32,8 @@ export class OrderInfoComponent implements OnInit {
 
   selectedItems: OrderDTO[] = [];
 
+  searchString: string = '';
+
   constructor(
     private auth: AuthService,
     private srvMsg: MyMessageService,
